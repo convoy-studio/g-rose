@@ -1,0 +1,154 @@
+<!DOCTYPE html>
+<html class="no-js">
+<head>
+	<meta charset="utf-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+	<title>Google + Fashion 2014</title>
+	<link rel="icon" href="favicon.ico" />
+	<link rel="image_src" href="/images/rose-thumbnail_tmp.jpg" />
+	<meta name="description" content="Google + Fashion 2014">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+
+	<!--CSS-->
+	<link rel="stylesheet" href="stylesheets/normalize.min.css">
+	<link rel="stylesheet" href="//ajax.googleapis.com/ajax/libs/jqueryui/1.11.0/themes/smoothness/jquery-ui.css" />
+	<link rel="stylesheet" href="stylesheets/global.css">
+
+	<!--JS-->
+	<script src="js/libs/modernizr-2.6.2.min.js"></script>
+	<script src="//ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js"></script>
+	<script>window.jQuery || document.write('<script src="js/vendor/jquery-1.11.0.min.js"><\/script>')</script>
+	<script src="//ajax.googleapis.com/ajax/libs/jqueryui/1.11.0/jquery-ui.min.js"></script>
+</head>
+<body>
+
+<div id="site">
+
+	<!--HEADER-->
+	<div id="header">
+		<div class="inner">
+			<h2>GOOGLE+ FASHION 2014</h2>
+			<div class="logo"><img src="images/common/logo-v.svg" alt="ROSE" width="40" height="116"/></div>
+		</div>
+	</div>
+
+	<!--MAIN-->
+	<div id="main_container">
+
+		<div id="login" class="page center_page">
+
+			<div class="inner_page">
+
+				<form action="/login" method="POST">
+					<input type="text" placeholder="username" name="username" value=""/>
+					<input type="password" placeholder="password" name="password" value=""/>
+					<button type="submit" class="button">Sign In</button>
+				</form>
+
+			</div>
+
+		</div>
+
+	</div>
+
+	<!--NAVIGATION-->
+	<div id="navigation">
+
+		<div class="left">
+			<a href="/intro" id="prevLink">
+				<img src="/images/login/arrow-left.svg" alt="left arrow" width="35" height="35">
+			</a>
+		</div>
+
+		<div class="center">
+			<ul>
+				<li class="circle circle-active"></li><!--
+				--><li class="circle"></li><!--
+				--><li class="circle"></li><!--
+				--><li class="circle"></li><!--
+				--><li class="circle"></li><!--
+				--><li class="circle"></li>
+			</ul>
+			<h2>LOGIN</h2>
+		</div>
+
+		<div class="right">
+			<a href="" id="nextLink" onClick="saveCollection();">
+				<img src="/images/login/arrow-right.svg" alt="left arrow" width="35" height="35">
+			</a>
+		</div>
+
+		<div class="cb"></div>
+
+	</div>
+
+	<!--FOOTER-->
+	<div id="footer">
+		<div class="inner_footer">
+			<ul>
+				<li class="link"><a href="http://google.com">GOOGLE</a></li><!--
+					--><li>/</li><!--
+					--><li class="link"><a class="fancy_bt fancybox.ajax" href="/logout">LOGOUT</a></li>
+			</ul>
+		</div>
+	</div>
+
+</div>
+
+<!--BACKGROUND-->
+<div id="site_background">
+	<ul id="scene">
+		<li class="gradient layer" data-depth="0.00"></li>
+		<li class="image layer" data-depth="0.40"></li>
+		<li class="dots layer" data-depth="0.00"></li>
+	</ul>
+</div>
+
+<script>
+	var urlParams;
+	var language = "english";
+	(window.onpopstate = function () {
+		var match,
+				pl     = /\+/g,  // Regex for replacing addition symbol with a space
+				search = /([^&=]+)=?([^&]*)/g,
+				decode = function (s) { return decodeURIComponent(s.replace(pl, " ")); },
+				query  = window.location.search.substring(1);
+
+		urlParams = {};
+		while (match = search.exec(query))
+			urlParams[decode(match[1])] = decode(match[2]);
+	})();
+
+	if (urlParams.language == "spanish") {
+		$(".english").hide();
+		language = "spanish";
+	} else {
+		$(".spanish").hide();
+	}
+
+	function loginForm() {
+		/*
+		 var postData = $('#loginForm').serializeArray();
+		 $.ajax ({
+		 url : "/login",
+		 type: "POST",
+		 data: postData,
+		 success: function (data) {
+		 window.location = "/collection?language="+language;
+		 },
+		 error: function() {
+		 console.log("failed to login");
+		 }
+		 });
+		 //e.preventDefault();
+		 //e.unbind();
+		 */
+		$("#loginForm").submit();
+
+	}
+
+</script>
+
+<script src="js/app.min.js"></script>
+</body>
+</html>

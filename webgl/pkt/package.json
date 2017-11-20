@@ -1,0 +1,23 @@
+{
+  "name": "pocket-ces",
+  "version": "0.0.0",
+  "description": "Component entity system, probably for game development.",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "demos": "beefy demos/exploding-balls/index.js:demos/exploding-balls/bundle.js demos/asteroids/index.js:demos/asteroids/bundle.js demos/dodge/index.js:demos/dodge/bundle.js"
+  },
+  "keywords": [
+    "ces",
+    "component-entity-system",
+    "entity",
+    "system"
+  ],
+  "author": "Drew Petersen <kirbysayshi@gmail.com>",
+  "license": "MIT",
+  "devDependencies": {
+    "beefy": "~2.1.1",
+    "browserify": "^4.1.7",
+    "marked": "~0.3.2"
+  }
+}

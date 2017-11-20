@@ -1,0 +1,1040 @@
+/*********************
+COMPASS
+*********************/
+/* line 5, ../../../../../../../../../Applications/CodeKit (16903).app/Contents/Resources/engines/compass/compass-core/stylesheets/compass/reset/_utilities.scss */
+html, body, div, span, applet, object, iframe,
+h1, h2, h3, h4, h5, h6, p, blockquote, pre,
+a, abbr, acronym, address, big, cite, code,
+del, dfn, em, img, ins, kbd, q, s, samp,
+small, strike, strong, sub, sup, tt, var,
+b, u, i, center,
+dl, dt, dd, ol, ul, li,
+fieldset, form, label, legend,
+table, caption, tbody, tfoot, thead, tr, th, td,
+article, aside, canvas, details, embed,
+figure, figcaption, footer, header, hgroup,
+menu, nav, output, ruby, section, summary,
+time, mark, audio, video {
+  margin: 0;
+  padding: 0;
+  border: 0;
+  font: inherit;
+  font-size: 100%;
+  vertical-align: baseline; }
+
+/* line 22, ../../../../../../../../../Applications/CodeKit (16903).app/Contents/Resources/engines/compass/compass-core/stylesheets/compass/reset/_utilities.scss */
+html {
+  line-height: 1; }
+
+/* line 24, ../../../../../../../../../Applications/CodeKit (16903).app/Contents/Resources/engines/compass/compass-core/stylesheets/compass/reset/_utilities.scss */
+ol, ul {
+  list-style: none; }
+
+/* line 26, ../../../../../../../../../Applications/CodeKit (16903).app/Contents/Resources/engines/compass/compass-core/stylesheets/compass/reset/_utilities.scss */
+table {
+  border-collapse: collapse;
+  border-spacing: 0; }
+
+/* line 28, ../../../../../../../../../Applications/CodeKit (16903).app/Contents/Resources/engines/compass/compass-core/stylesheets/compass/reset/_utilities.scss */
+caption, th, td {
+  text-align: left;
+  font-weight: normal;
+  vertical-align: middle; }
+
+/* line 30, ../../../../../../../../../Applications/CodeKit (16903).app/Contents/Resources/engines/compass/compass-core/stylesheets/compass/reset/_utilities.scss */
+q, blockquote {
+  quotes: none; }
+  /* line 103, ../../../../../../../../../Applications/CodeKit (16903).app/Contents/Resources/engines/compass/compass-core/stylesheets/compass/reset/_utilities.scss */
+  q:before, q:after, blockquote:before, blockquote:after {
+    content: "";
+    content: none; }
+
+/* line 32, ../../../../../../../../../Applications/CodeKit (16903).app/Contents/Resources/engines/compass/compass-core/stylesheets/compass/reset/_utilities.scss */
+a img {
+  border: none; }
+
+/* line 116, ../../../../../../../../../Applications/CodeKit (16903).app/Contents/Resources/engines/compass/compass-core/stylesheets/compass/reset/_utilities.scss */
+article, aside, details, figcaption, figure, footer, header, hgroup, main, menu, nav, section, summary {
+  display: block; }
+
+/*********************
+IMPORTS
+*********************/
+/*
+    Document   : _common$
+    Created on : 13 nov. 2013, 12:27:33
+    Author     : Diplomatic Cover
+    Description:
+    Purpose of the stylesheet follows.
+*/
+/* line 1, ../../../dev/sass/_fonts.scss */
+html {
+  -webkit-font-smoothing: antialiased; }
+
+@font-face {
+  font-family: 'GillSansMTProLight';
+  src: url("webfonts/gillsansmtpro-light.eot");
+  src: url("webfonts/gillsansmtpro-light.eot") format("embedded-opentype"), url("webfonts/gillsansmtpro-light.woff") format("woff"), url("webfonts/gillsansmtpro-light.ttf") format("truetype"), url("webfonts/gillsansmtpro-light.svg#GillSansMTProLight") format("svg"); }
+@font-face {
+  font-family: 'GillSansMTProMedium';
+  src: url("webfonts/gillsansmtpro-medium.eot");
+  src: url("webfonts/gillsansmtpro-medium.eot") format("embedded-opentype"), url("webfonts/gillsansmtpro-medium.woff") format("woff"), url("webfonts/gillsansmtpro-medium.ttf") format("truetype"), url("webfonts/gillsansmtpro-medium.svg#GillSansMTProMedium") format("svg"); }
+/* line 43, ../../../dev/sass/_fonts.scss */
+h1, h2, h3 {
+  font-weight: normal; }
+
+/* line 1, ../../../dev/sass/_base.scss */
+html, body, div, span, object, iframe,
+h1, h2, h3, h4, h5, h6, p, blockquote, pre,
+abbr, address, cite, code,
+del, dfn, em, img, ins, kbd, q, samp,
+small, strong, sub, sup, var,
+b, i,
+dl, dt, dd, ol, ul, li,
+fieldset, form, label, legend,
+table, caption, tbody, tfoot, thead, tr, th, td,
+article, aside, canvas, details, figcaption, figure,
+footer, header, hgroup, menu, nav, section, summary,
+time, mark, audio, video {
+  margin: 0;
+  padding: 0; }
+
+/* line 20, ../../../dev/sass/_base.scss */
+html {
+  overflow-y: scroll; }
+
+/* line 24, ../../../dev/sass/_base.scss */
+body {
+  font-size: 14px;
+  line-height: 21px;
+  background-color: #FFFFFF; }
+
+/* line 30, ../../../dev/sass/_base.scss */
+body.iframe {
+  background: none; }
+
+/* line 34, ../../../dev/sass/_base.scss */
+body.noscroll {
+  overflow: hidden;
+  margin-right: 17px; }
+
+/* line 40, ../../../dev/sass/_base.scss */
+article, aside, details, figcaption, figure, footer, header, hgroup, main, nav, section, summary {
+  display: block; }
+
+/* line 44, ../../../dev/sass/_base.scss */
+h1, h2, h3, h4, h5, h6 {
+  font-weight: normal; }
+
+/* line 48, ../../../dev/sass/_base.scss */
+li {
+  list-style-type: none; }
+
+/* line 52, ../../../dev/sass/_base.scss */
+a, a:hover, a:active {
+  outline: none;
+  text-decoration: none;
+  color: #000; }
+
+/* line 58, ../../../dev/sass/_base.scss */
+a:hover, a:active {
+  text-decoration: underline; }
+
+/* line 62, ../../../dev/sass/_base.scss */
+a img {
+  border: none; }
+
+/* line 66, ../../../dev/sass/_base.scss */
+img {
+  vertical-align: middle; }
+
+/* line 70, ../../../dev/sass/_base.scss */
+fieldset {
+  border: 0;
+  margin: 0;
+  padding: 0; }
+
+/* line 76, ../../../dev/sass/_base.scss */
+textarea {
+  resize: vertical; }
+
+/*::selection {
+	background: #fff2a8;
+}
+
+::-moz-selection {
+	background: #fff2a8;
+}*/
+/* line 1, ../../../dev/sass/_common.scss */
+.wrap {
+  margin: 0 auto;
+  position: relative;
+  padding: 0;
+  width: 754px; }
+
+/* line 8, ../../../dev/sass/_common.scss */
+.fl {
+  float: left; }
+
+/* line 12, ../../../dev/sass/_common.scss */
+.fr {
+  float: right; }
+
+/* line 16, ../../../dev/sass/_common.scss */
+.cb {
+  clear: both; }
+
+/* line 20, ../../../dev/sass/_common.scss */
+* {
+  -moz-box-sizing: border-box;
+  -webkit-box-sizing: border-box;
+  box-sizing: border-box; }
+
+/* line 24, ../../../dev/sass/_common.scss */
+a:focus, a:active, input:focus {
+  outline: none; }
+
+/* line 25, ../../../dev/sass/_common.scss */
+a, a img {
+  border: none; }
+
+/* line 27, ../../../dev/sass/_common.scss */
+input {
+  -webkit-appearance: none;
+  border-radius: 0; }
+
+/*********************
+BACKGROUND
+*********************/
+/* line 35, ../../../dev/sass/_common.scss */
+#site_background {
+  position: fixed;
+  top: 0;
+  left: 0;
+  bottom: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 0; }
+  /* line 44, ../../../dev/sass/_common.scss */
+  #site_background ul {
+    width: 100%;
+    height: 100%; }
+    /* line 48, ../../../dev/sass/_common.scss */
+    #site_background ul li {
+      position: absolute;
+      width: 100%;
+      height: 100%; }
+  /* line 55, ../../../dev/sass/_common.scss */
+  #site_background .gradient {
+    z-index: 1;
+    background-color: #eaeaea;
+    background-image: -webkit-gradient(linear, left top, left bottom, from(#eaeaea), to(white));
+    background-image: -webkit-linear-gradient(top, #eaeaea, white);
+    background-image: -moz-linear-gradient(top, #eaeaea, white);
+    background-image: -o-linear-gradient(top, #eaeaea, white);
+    background-image: -ms-linear-gradient(top, #eaeaea, white);
+    background-image: linear-gradient(to bottom, #eaeaea, #ffffff);
+    filter: progid:DXImageTransform.Microsoft.gradient(GradientType=0,StartColorStr='#eaeaea', EndColorStr='#ffffff'); }
+  /* line 67, ../../../dev/sass/_common.scss */
+  #site_background .image {
+    z-index: 2;
+    background: transparent url("../images/common/trame.png") no-repeat center top;
+    background-size: cover; }
+  /* line 73, ../../../dev/sass/_common.scss */
+  #site_background .dots {
+    z-index: 3;
+    background: transparent url("../images/common/dots.png") repeat left top;
+    background-attachment: fixed; }
+
+/* line 82, ../../../dev/sass/_common.scss */
+body.scene_background #site_background .gradient {
+  display: none; }
+/* line 85, ../../../dev/sass/_common.scss */
+body.scene_background #site_background .image {
+  display: none; }
+
+/*********************
+HEADER
+*********************/
+/* line 94, ../../../dev/sass/_common.scss */
+#header {
+  position: fixed;
+  width: 100%;
+  top: 0;
+  left: 0;
+  z-index: 100; }
+  /* line 101, ../../../dev/sass/_common.scss */
+  #header .inner {
+    position: absolute;
+    top: 24px;
+    width: 100%;
+    text-align: center; }
+    /* line 107, ../../../dev/sass/_common.scss */
+    #header .inner h2 {
+      font-family: 'GillSansMTProLight', serif;
+      padding-top: 1px;
+      font-size: 16px;
+      line-height: 16px;
+      font-weight: 400;
+      color: #323232;
+      letter-spacing: 0.15em;
+      padding-bottom: 10px; }
+      /* line 113, ../../../dev/sass/_common.scss */
+      #header .inner h2.collectionName {
+        font-family: 'GillSansMTProLight', serif;
+        padding-top: 1px;
+        font-size: 16px;
+        line-height: 16px;
+        font-weight: 400;
+        font-weight: normal;
+        letter-spacing: 0.15em;
+        margin: auto;
+        padding-top: 10px;
+        text-transform: uppercase; }
+    /* line 123, ../../../dev/sass/_common.scss */
+    #header .inner .logo {
+      position: absolute;
+      right: 20px;
+      top: 0; }
+  /* line 130, ../../../dev/sass/_common.scss */
+  #header hr {
+    margin: auto;
+    width: 330px; }
+
+/*********************
+NAVIGATION
+*********************/
+/* line 139, ../../../dev/sass/_common.scss */
+#navigation {
+  position: fixed;
+  bottom: 56px;
+  width: 100%;
+  z-index: 200;
+  text-align: center; }
+  /* line 146, ../../../dev/sass/_common.scss */
+  #navigation .left, #navigation .center, #navigation .right {
+    display: inline-block;
+    vertical-align: middle; }
+  /* line 151, ../../../dev/sass/_common.scss */
+  #navigation .center {
+    width: 160px;
+    margin: 0 26px; }
+    /* line 155, ../../../dev/sass/_common.scss */
+    #navigation .center ul {
+      overflow: hidden;
+      text-align: center; }
+      /* line 159, ../../../dev/sass/_common.scss */
+      #navigation .center ul li {
+        display: inline-block;
+        vertical-align: middle;
+        border: 2px solid #323232;
+        width: 12px;
+        height: 12px;
+        margin-left: 10px;
+        -moz-border-radius: 50%;
+        -webkit-border-radius: 50%;
+        border-radius: 50%;
+        background-color: transparent; }
+        /* line 169, ../../../dev/sass/_common.scss */
+        #navigation .center ul li:first-child {
+          margin-left: 0; }
+        /* line 173, ../../../dev/sass/_common.scss */
+        #navigation .center ul li.circle-active {
+          background-color: #323232; }
+    /* line 179, ../../../dev/sass/_common.scss */
+    #navigation .center h2 {
+      font-family: 'GillSansMTProMedium', serif;
+      padding-top: 1px;
+      font-size: 13px;
+      line-height: 13px;
+      font-weight: 400;
+      letter-spacing: 0.2em;
+      text-align: center;
+      padding-top: 10px; }
+
+/*********************
+OVERLAY
+*********************/
+/* line 192, ../../../dev/sass/_common.scss */
+.overlay {
+  position: absolute;
+  width: 598px;
+  height: 420px;
+  background: transparent url("../images/common/overlay-background.svg") no-repeat center center;
+  background-size: cover;
+  left: 50%;
+  margin-left: -299px;
+  top: 50%;
+  margin-top: -210px;
+  z-index: 10000;
+  line-height: 420px; }
+  /* line 205, ../../../dev/sass/_common.scss */
+  .overlay .bt_close {
+    position: absolute;
+    width: 18px;
+    height: 18px;
+    top: 20px;
+    right: 20px;
+    line-height: 0; }
+  /* line 214, ../../../dev/sass/_common.scss */
+  .overlay .inner {
+    display: inline-block;
+    vertical-align: middle;
+    text-align: center;
+    font-family: 'GillSansMTProLight', serif;
+    padding-top: 1px;
+    font-size: 25px;
+    line-height: 29px;
+    font-weight: 400;
+    letter-spacing: 0.15em;
+    color: #ffffff;
+    padding: 0 40px; }
+
+/*********************
+FOOTER
+*********************/
+/* line 228, ../../../dev/sass/_common.scss */
+#footer {
+  position: fixed;
+  left: 0;
+  bottom: 0;
+  background-color: white;
+  height: 26px;
+  line-height: 26px;
+  width: 100%;
+  padding: 0 12px;
+  border-top: 1px solid #c8c8c8;
+  z-index: 100; }
+  /* line 242, ../../../dev/sass/_common.scss */
+  #footer ul li {
+    display: inline-block;
+    vertical-align: middle;
+    margin-left: 10px;
+    color: #8b8b8b; }
+    /* line 248, ../../../dev/sass/_common.scss */
+    #footer ul li a {
+      display: block;
+      font-family: 'GillSansMTProMedium', serif;
+      padding-top: 1px;
+      font-size: 8pt;
+      line-height: 8pt;
+      font-weight: 400;
+      letter-spacing: .10em;
+      color: #969696;
+      text-decoration: none;
+      -moz-transition: all 0.2s ease-out;
+      -o-transition: all 0.2s ease-out;
+      -webkit-transition: all 0.2s ease-out;
+      transition: all 0.2s ease-out; }
+      /* line 256, ../../../dev/sass/_common.scss */
+      #footer ul li a:hover {
+        color: #323232; }
+    /* line 261, ../../../dev/sass/_common.scss */
+    #footer ul li:first-child {
+      margin-left: 0; }
+
+/*********************
+COMMON
+*********************/
+/* line 21, ../../../dev/sass/global.scss */
+body {
+  background-color: #FFFFFF;
+  font-family: 'GillSansMTProLight', serif;
+  padding-top: 1px;
+  font-size: 14px;
+  line-height: 16px;
+  font-weight: 400;
+  color: #323232; }
+  /* line 26, ../../../dev/sass/global.scss */
+  body.scene_background {
+    background-color: #eaeaea;
+    background-attachment: scroll;
+    background-image: url("../images/common/scene-background.png");
+    background-position: center -100px;
+    background-size: auto auto;
+    background-repeat: no-repeat; }
+
+/* line 36, ../../../dev/sass/global.scss */
+#site {
+  position: relative; }
+
+/* line 40, ../../../dev/sass/global.scss */
+#main_container {
+  position: relative;
+  z-index: 100; }
+
+/*********************
+PAGES
+*********************/
+/* line 1, ../../../dev/sass/pages/_login.scss */
+#login {
+  width: 100%;
+  height: 100%; }
+  /* line 5, ../../../dev/sass/pages/_login.scss */
+  #login .inner_page {
+    position: absolute;
+    width: 350px;
+    height: 280px;
+    left: 50%;
+    margin-left: -175px;
+    top: 50%;
+    margin-top: -140px; }
+  /* line 15, ../../../dev/sass/pages/_login.scss */
+  #login form {
+    background-color: #f8f8f8;
+    border: 5px solid #323232;
+    color: #323232;
+    font-size: 24px;
+    letter-spacing: 0.025em;
+    padding: 40px 0;
+    text-transform: uppercase;
+    width: 350px;
+    height: 280px;
+    text-align: center; }
+  /* line 28, ../../../dev/sass/pages/_login.scss */
+  #login input[type="text"], #login input[type="password"] {
+    border: medium none;
+    font-family: 'GillSansMTProLight', serif;
+    padding-top: 1px;
+    font-size: 24px;
+    line-height: 24px;
+    font-weight: 400;
+    letter-spacing: 0.2em;
+    margin-bottom: 10px;
+    padding: 20px 0 13px 0;
+    text-align: center;
+    text-transform: uppercase;
+    width: 300px;
+    color: #323232; }
+  /* line 40, ../../../dev/sass/pages/_login.scss */
+  #login .button {
+    background-color: white;
+    display: block;
+    font-family: 'GillSansMTProMedium', serif;
+    padding-top: 1px;
+    font-size: 16px;
+    line-height: 16px;
+    font-weight: 400;
+    letter-spacing: 0.2em;
+    margin: 15px auto 0 auto;
+    text-align: center;
+    text-transform: uppercase;
+    transition: background-color 0.2s ease-out 0s;
+    padding: 20px 0 13px 0;
+    width: 300px;
+    border: none;
+    color: #323232;
+    -moz-transition: all 0.2s ease-out;
+    -o-transition: all 0.2s ease-out;
+    -webkit-transition: all 0.2s ease-out;
+    transition: all 0.2s ease-out; }
+    /* line 55, ../../../dev/sass/pages/_login.scss */
+    #login .button:hover {
+      background-color: #323232;
+      color: white; }
+
+/* line 1, ../../../dev/sass/pages/_collection.scss */
+#collection {
+  width: 100%;
+  height: 100%; }
+  /* line 5, ../../../dev/sass/pages/_collection.scss */
+  #collection .inner_page {
+    position: absolute;
+    width: 588px;
+    height: 184px;
+    left: 50%;
+    margin-left: -294px;
+    top: 50%;
+    margin-top: -92px; }
+  /* line 15, ../../../dev/sass/pages/_collection.scss */
+  #collection input[type="text"] {
+    border: 3px solid #323232;
+    color: #323232;
+    font-family: 'GillSansMTProMedium', serif;
+    padding-top: 1px;
+    font-size: 24px;
+    line-height: 24px;
+    font-weight: 400;
+    width: 588px;
+    height: 82px;
+    line-height: 82px;
+    background-color: transparent;
+    text-transform: uppercase;
+    text-align: center;
+    padding-top: 0 20px;
+    letter-spacing: 0.15em; }
+  /* line 29, ../../../dev/sass/pages/_collection.scss */
+  #collection input[type="radio"] {
+    display: none; }
+  /* line 33, ../../../dev/sass/pages/_collection.scss */
+  #collection label {
+    cursor: pointer;
+    display: inline-block;
+    vertical-align: middle;
+    border: 3px solid #323232;
+    color: #323232;
+    font-family: 'GillSansMTProMedium', serif;
+    padding-top: 1px;
+    font-size: 24px;
+    line-height: 24px;
+    font-weight: 400;
+    width: 282px;
+    height: 82px;
+    line-height: 82px;
+    background-color: transparent;
+    text-transform: uppercase;
+    text-align: center;
+    padding-top: 0 20px;
+    letter-spacing: 0.15em;
+    -moz-transition: all 0.2s ease-out;
+    -o-transition: all 0.2s ease-out;
+    -webkit-transition: all 0.2s ease-out;
+    transition: all 0.2s ease-out; }
+    /* line 50, ../../../dev/sass/pages/_collection.scss */
+    #collection label:hover {
+      background-color: #e6e7e8; }
+    /* line 54, ../../../dev/sass/pages/_collection.scss */
+    #collection label.right {
+      margin-left: 20px; }
+  /* line 59, ../../../dev/sass/pages/_collection.scss */
+  #collection input[type="radio"]:checked + label {
+    background-color: #e6e7e8; }
+  /* line 61, ../../../dev/sass/pages/_collection.scss */
+  #collection .gender {
+    margin-top: 20px; }
+  /* line 65, ../../../dev/sass/pages/_collection.scss */
+  #collection .season {
+    display: none; }
+
+/* line 1, ../../../dev/sass/pages/_garments.scss */
+#garments {
+  position: relative; }
+  /* line 4, ../../../dev/sass/pages/_garments.scss */
+  #garments .side {
+    text-align: center; }
+  /* line 8, ../../../dev/sass/pages/_garments.scss */
+  #garments .left {
+    position: absolute;
+    background: transparent url("../images/common/side-left-background.svg") no-repeat left top;
+    background-size: cover;
+    width: 318px;
+    min-height: 900px;
+    height: 100%;
+    top: 0;
+    left: 0;
+    z-index: 100; }
+  /* line 20, ../../../dev/sass/pages/_garments.scss */
+  #garments .center {
+    padding-top: 110px;
+    width: 700px;
+    position: relative;
+    margin: 0 auto; }
+  /* line 27, ../../../dev/sass/pages/_garments.scss */
+  #garments .right {
+    position: absolute;
+    background: transparent url("../images/common/side-right-background.svg") no-repeat left top;
+    background-size: cover;
+    width: 318px;
+    min-height: 900px;
+    height: 100%;
+    top: 0;
+    right: 0;
+    z-index: 99; }
+  /* line 39, ../../../dev/sass/pages/_garments.scss */
+  #garments .bt_info {
+    position: absolute;
+    top: 20px;
+    left: 20px;
+    z-index: 1000;
+    line-height: 0; }
+  /* line 47, ../../../dev/sass/pages/_garments.scss */
+  #garments .list {
+    display: inline-block;
+    vertical-align: middle;
+    line-height: 16px; }
+  /* line 53, ../../../dev/sass/pages/_garments.scss */
+  #garments .leftSidebar .list{
+    padding-bottom: 85px;
+  }
+  #garments .garment {
+    display: inline-block;
+    margin-left: 15px;
+    margin-top: 15px;
+    text-align: center;
+    width: 96px; 
+    border: 2px solid transparent;
+  }
+  #garments .active-thumbnail {
+    border: 2px solid black;
+  }
+    /* line 60, ../../../dev/sass/pages/_garments.scss */
+    #garments .label {
+      color: black;
+      font-size: 12px;
+      font-weight: normal;
+      letter-spacing: 0.05em;
+      margin-top: 15px;
+      text-transform: uppercase; }
+    /* line 70, ../../../dev/sass/pages/_garments.scss */
+    #garments .garment .thumbnail {
+      background-color: white;
+      border: 2px solid white;
+      display: inline-block;
+      height: 130px;
+      position: relative;
+      text-align: center;
+      width: 92px; 
+      overflow: hidden;
+      float: left;
+    }
+      /* line 79, ../../../dev/sass/pages/_garments.scss */
+      #garments .garment .thumbnail img {
+         
+      }
+    #garments .garment-select {
+      display:none;
+    }
+    .garment select {
+      display: none;
+    }
+    #garments .arrows {
+      display:inline-block;
+      border: 2px solid white;
+      width:92px;
+      float: left;
+    }
+    #garments  .arrows .Larrow {
+        cursor: pointer;
+        margin-left: 2px;
+        float: left; }
+      /* line 209, ../../../dev/sass/pages/_embellish.scss */
+    #garments  .arrows .Rarrow {
+      cursor: pointer;
+      margin-right: 2px;
+      float: right; }
+  /* line 85, ../../../dev/sass/pages/_garments.scss */
+  #garments .container_slider {
+    background-color: #ffffff;
+    margin-top: 16px;
+    padding-top: 14px;
+    width: 150px;
+    text-align: center; }
+    /* line 92, ../../../dev/sass/pages/_garments.scss */
+    #garments .container_slider .slider, #garments .container_slider .ui-slider, #garments .container_slider .ui-slider-horizontal, #garments .container_slider .ui-widget-content, #garments .container_slider .ui-widget-content {
+      background-color: #323232;
+      background-image: none;
+      border: medium none;
+      height: 3px;
+      margin-left: 10px;
+      width: 125px; }
+    /* line 101, ../../../dev/sass/pages/_garments.scss */
+    #garments .container_slider .ui-slider-horizontal .ui-slider-handle {
+      background: none repeat scroll 0 0 #323232;
+      border: medium none;
+      border-radius: 50%;
+      cursor: pointer;
+      height: 12px;
+      margin-left: -1px;
+      margin-top: 1px;
+      transition: background-color 0.2s ease-out 0s;
+      width: 12px; }
+    /* line 113, ../../../dev/sass/pages/_garments.scss */
+    #garments .container_slider .label {
+      margin-bottom: 5px;
+      background-color: #dedede;
+      border: 3px solid white;
+      color: #323232;
+      font-family: 'GillSansMTProMedium', serif;
+      padding-top: 1px;
+      font-size: 10px;
+      line-height: 10px;
+      font-weight: 400;
+      font-weight: normal;
+      height: 25px;
+      letter-spacing: 0.15em;
+      line-height: 23px;
+      margin-top: 10px;
+      text-transform: uppercase;
+      width: 144px; }
+    /* line 128, ../../../dev/sass/pages/_garments.scss */
+    #garments .container_slider:first-child {
+      margin-top: 0; }
+    #garments .rotate {
+      position:absolute;
+      right: 73px;
+      bottom: 77px;
+    }
+
+    #embellish .rotate {
+      position:absolute;
+      right: 73px;
+      bottom: 77px;
+    }
+
+/* line 1, ../../../dev/sass/pages/_embellish.scss */
+#embellish {
+  position: relative; }
+  /* line 4, ../../../dev/sass/pages/_embellish.scss */
+  #embellish .side {
+    text-align: center; }
+  /* line 8, ../../../dev/sass/pages/_embellish.scss */
+  #embellish .left {
+    position: absolute;
+    background: transparent url("../images/common/side-left-background.svg") no-repeat left top;
+    background-size: cover;
+    width: 318px;
+    min-height: 900px;
+    height: 100%;
+    top: 0;
+    left: 0;
+    z-index: 100; }
+    /* line 19, ../../../dev/sass/pages/_embellish.scss */
+    #embellish .left .list {
+      margin-left: -10px; 
+      padding-bottom: 155px;
+    }
+  /* line 24, ../../../dev/sass/pages/_embellish.scss */
+  #embellish .center {
+    padding-top: 110px;
+    width: 700px;
+    position: relative;
+    margin: 0 auto; }
+  /* line 31, ../../../dev/sass/pages/_embellish.scss */
+  #embellish .right {
+    position: absolute;
+    background: transparent url("../images/common/side-right-background.svg") no-repeat left top;
+    background-size: cover;
+    width: 318px;
+    min-height: 900px;
+    height: 100%;
+    top: 0;
+    right: 0;
+    z-index: 99; }
+  /* line 43, ../../../dev/sass/pages/_embellish.scss */
+  #embellish .bt_info {
+    position: absolute;
+    top: 20px;
+    left: 20px;
+    z-index: 1000;
+    line-height: 0; }
+  /* line 51, ../../../dev/sass/pages/_embellish.scss */
+  #embellish .list {
+    display: inline-block;
+    vertical-align: middle;
+    line-height: 16px;
+    width: 240px; }
+  /* line 58, ../../../dev/sass/pages/_embellish.scss */
+  #embellish .garment {
+    display: inline-block;
+    margin-left: 10px;
+    margin-top: 20px;
+    float: left;
+    width: 110px;
+    text-align: center; }
+    /* line 64, ../../../dev/sass/pages/_embellish.scss */
+    #embellish .garment .label {
+      color: #323232;
+      font-family: 'GillSansMTProLight', serif;
+      padding-top: 1px;
+      font-size: 12px;
+      line-height: 12px;
+      font-weight: 400;
+      font-weight: normal;
+      letter-spacing: 0.15em;
+      margin-bottom: 5px;
+      text-transform: uppercase; }
+    /* line 73, ../../../dev/sass/pages/_embellish.scss */
+    #embellish .garment .thumbnail {
+      background-color: white;
+      border: 2px solid white;
+      display: inline-block;
+      height: 130px;
+      position: relative;
+      text-align: center;
+      width: 85px;
+      line-height: 115px; }
+      /* line 83, ../../../dev/sass/pages/_embellish.scss */
+      #embellish .garment .thumbnail img {
+        display: inline-block;
+        vertical-align: middle;
+        width: 100%; }
+      #embellish .garment .active-thumbnail {
+        border: 2px solid black;
+      }
+  /* line 92, ../../../dev/sass/pages/_embellish.scss */
+  #embellish .container_slider {
+    background-color: #ffffff;
+    margin-top: 20px;
+    padding-top: 14px;
+    width: 150px;
+    text-align: center; }
+    /* line 99, ../../../dev/sass/pages/_embellish.scss */
+    #embellish .container_slider .slider, #embellish .container_slider .ui-slider, #embellish .container_slider .ui-slider-horizontal, #embellish .container_slider .ui-widget-content, #embellish .container_slider .ui-widget-content {
+      background-color: #323232;
+      background-image: none;
+      border: medium none;
+      height: 3px;
+      margin-left: 10px;
+      width: 125px; }
+    /* line 108, ../../../dev/sass/pages/_embellish.scss */
+    #embellish .container_slider .ui-slider-horizontal .ui-slider-handle {
+      background: none repeat scroll 0 0 #323232;
+      border: medium none;
+      border-radius: 50%;
+      cursor: pointer;
+      height: 12px;
+      margin-left: -1px;
+      margin-top: 1px;
+      transition: background-color 0.2s ease-out 0s;
+      width: 12px; }
+    /* line 120, ../../../dev/sass/pages/_embellish.scss */
+    #embellish .container_slider .label {
+      margin-bottom: 5px;
+      background-color: #dedede;
+      border: 3px solid white;
+      color: #323232;
+      font-family: 'GillSansMTProMedium', serif;
+      padding-top: 1px;
+      font-size: 10px;
+      line-height: 10px;
+      font-weight: 400;
+      font-weight: normal;
+      height: 29px;
+      letter-spacing: 0.15em;
+      line-height: 28px;
+      margin-top: 10px;
+      text-transform: uppercase;
+      width: 144px; }
+    /* line 135, ../../../dev/sass/pages/_embellish.scss */
+    #embellish .container_slider:first-child {
+      margin-top: 0; }
+  /* line 140, ../../../dev/sass/pages/_embellish.scss */
+  #embellish .rightSidebar {
+    width: 150px; }
+  /* line 144, ../../../dev/sass/pages/_embellish.scss */
+  #embellish .rightSidebar .label {
+    margin-top: 10px; }
+  /* line 148, ../../../dev/sass/pages/_embellish.scss */
+  #embellish #shapeSelect {
+    display: none; }
+  /* line 153, ../../../dev/sass/pages/_embellish.scss */
+  #embellish .container_shape_select .label {
+    margin-bottom: 5px;
+    background-color: #dedede;
+    border: 3px solid white;
+    color: #323232;
+    font-family: 'GillSansMTProMedium', serif;
+    padding-top: 1px;
+    font-size: 10px;
+    line-height: 10px;
+    font-weight: 400;
+    font-weight: normal;
+    height: 29px;
+    letter-spacing: 0.15em;
+    line-height: 28px;
+    margin-top: 0;
+    text-transform: uppercase;
+    width: 100%; }
+  /* line 169, ../../../dev/sass/pages/_embellish.scss */
+  #embellish .shapeSelect {
+    background: none repeat scroll 0 0 white;
+    position: relative;
+    width: 100%; }
+    /* line 174, ../../../dev/sass/pages/_embellish.scss */
+    #embellish .shapeSelect .shape-icon {
+      background: none repeat scroll 0 0 white;
+      width: 150px;
+      height: 150px;
+      margin: auto;
+      overflow: hidden; }
+      /* line 181, ../../../dev/sass/pages/_embellish.scss */
+      #embellish .shapeSelect .shape-icon .inner {
+        width: 150px;
+        height: 150px;
+        overflow: hidden; }
+        /* line 187, ../../../dev/sass/pages/_embellish.scss */
+        #embellish .shapeSelect .shape-icon .inner img {
+          display: none; 
+          width:100%;
+        }
+          /* line 190, ../../../dev/sass/pages/_embellish.scss */
+          #embellish .shapeSelect .shape-icon .inner img:first-child {
+            display: inline; }
+    /* line 197, ../../../dev/sass/pages/_embellish.scss */
+    #embellish .shapeSelect .arrows {
+      position: absolute;
+      height: 16px;
+      padding: 6px;
+      width: 100%;
+      top: 149px; }
+      /* line 204, ../../../dev/sass/pages/_embellish.scss */
+      #embellish .shapeSelect .arrows .Larrow {
+        cursor: pointer;
+        float: left; }
+      /* line 209, ../../../dev/sass/pages/_embellish.scss */
+      #embellish .shapeSelect .arrows .Rarrow {
+        cursor: pointer;
+        float: right; }
+  /* line 216, ../../../dev/sass/pages/_embellish.scss */
+  #embellish .buffer {
+    width: 100%; }
+    /* line 219, ../../../dev/sass/pages/_embellish.scss */
+    #embellish .buffer input[type="checkbox"] {
+      display: none; }
+    /* line 223, ../../../dev/sass/pages/_embellish.scss */
+    #embellish .buffer .label {
+      cursor: pointer;
+      display: inline-block;
+      background-color: #dedede;
+      border: 3px solid white;
+      border-right: none;
+      color: #323232;
+      font-family: 'GillSansMTProMedium', serif;
+      padding-top: 1px;
+      font-size: 10px;
+      line-height: 10px;
+      font-weight: 400;
+      font-weight: normal;
+      height: 30px;
+      letter-spacing: 0.15em;
+      line-height: 27px;
+      margin-top: 18px;
+      text-transform: uppercase;
+      width: 150px; }
+      /* line 239, ../../../dev/sass/pages/_embellish.scss */
+      #embellish .buffer .label:after {
+        float: right;
+        content: "";
+        width: 24px;
+        height: 24px;
+        margin-top: -1px;
+        background: transparent url("../images/embellish/ico-uncheck.svg") no-repeat right top;
+        background-size: 24px 24px; }
+    /* line 251, ../../../dev/sass/pages/_embellish.scss */
+    #embellish .buffer input[type="checkbox"]:checked + label:after {
+      background-image: url("../images/embellish/ico-check.svg"); }
+  /* line 257, ../../../dev/sass/pages/_embellish.scss */
+  #embellish .button {
+    cursor: pointer;
+    background-color: white;
+    display: block;
+    font-family: "GillSansMTProMedium",sans-serif;
+    font-size: 16px;
+    letter-spacing: 0.15em;
+    margin: 20px auto;
+    padding: 14px 10px 10px;
+    text-align: center;
+    text-transform: uppercase;
+    transition: background-color 0.2s ease-out 0s;
+    width: 100%;
+    text-decoration: none;
+    -moz-transition: all 0.2s ease-out;
+    -o-transition: all 0.2s ease-out;
+    -webkit-transition: all 0.2s ease-out;
+    transition: all 0.2s ease-out; }
+    /* line 273, ../../../dev/sass/pages/_embellish.scss */
+    #embellish .button:hover {
+      background-color: #e6e7e8; }
+  /* line 278, ../../../dev/sass/pages/_embellish.scss */
+  #embellish .rotate {
+    margin-top: 100px; }

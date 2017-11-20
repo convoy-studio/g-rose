@@ -1,0 +1,640 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <link rel="icon" href="favicon.ico" />  
+    <link href='http://fonts.googleapis.com/css?family=EB+Garamond' rel='stylesheet' type='text/css'>
+    <link href='http://fonts.googleapis.com/css?family=Karla:400,700' rel='stylesheet' type='text/css'>
+    <link href='http://fonts.googleapis.com/css?family=Varela+Round' rel='stylesheet' type='text/css'>
+    
+
+    <script src="//ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
+    <link rel="stylesheet" href="//ajax.googleapis.com/ajax/libs/jqueryui/1.11.0/themes/smoothness/jquery-ui.css" />
+<script src="//ajax.googleapis.com/ajax/libs/jqueryui/1.11.0/jquery-ui.min.js"></script>
+
+    
+    <link rel="stylesheet" href="stylesheets/dropzone.css" />
+    <link rel="stylesheet" href="stylesheets/main.css" />
+
+    <title>Google + Fashion 2014</title>
+	<link rel="icon" href="favicon.ico" />
+	<link rel="image_src" href="/images/rose-thumbnail_tmp.jpg" />
+    
+    <script src="/js/materialView.web.js"></script>
+    <script src="/js/dropzone.min.js"></script>
+    <script type="text/javascript" src="js/jquery.wheelcolorpicker.js"></script>
+    <link type="text/css" rel="stylesheet" href="stylesheets/wheelcolorpicker.css" />
+    <style>
+    #content {
+      background-image: url('/images/trame.png');
+    }
+    .column {
+      background-color: transparent;
+      width: 14%;
+    }
+    .tab {
+      cursor: pointer;
+    }
+    .middleSection {
+      z-index: 5;
+      width: 1100px;
+      margin: auto auto;
+      height: 700px;
+    }
+    .material{
+      width: 19%;
+      position:relative;
+      float:left;
+      margin: 0px 33px;
+    }
+    .colorBox {
+      width: 100%;
+      background: white;
+      min-height: 150px;
+      margin-bottom: 25px;
+      border: 3px solid white;
+    }
+    .colorBox .label {
+      padding: 9px;
+      display:inline-block;
+      width: 40%;
+    }
+    .colorBox .inactive {
+      background-color: #F6F7F4;
+    }
+
+    .black {
+      color: black;
+      text-shadow: 0px 0px 7px white;
+    }
+    select {
+      color: black;
+      font-weight: 300;
+    }
+
+    .materialSelect {
+      border: 3px solid white;
+      width:100%;
+    }
+    .Larrow, .Rarrow {
+      cursor: pointer;
+      width:10px;
+    }
+
+
+    .st0:hover {
+      fill:#666666;
+    }
+    .upload {
+      position: relative;
+    }
+    .upload p{
+      position: absolute;
+      width: 50%;
+      top: 70px;
+      left: 54px;
+      color: black;
+      text-transform: uppercase;
+      letter-spacing: .1em;
+    }
+    #image1, #image2 {
+      height: 228px;
+    }
+    .patterns {
+      padding-top: 6px;
+      padding-bottom: 4px;
+    }
+    .patterns img{
+      width:30px;
+      height: 30px;
+      border: 3px solid white;
+      display:inline-block;
+      margin: 2px;
+    }
+    .pattern:hover {
+      border: 3px solid #8BD6A2;
+      cursor: pointer;
+    }
+    #matView1, #matView2 {
+      display:none;
+    }
+    #mat1, #mat2, #mat3, #mat4 {
+      border-radius: 51%;
+      width:117px;
+      margin: 73px 53px 68px 53px ;
+    }
+    #mat3, #mat4 {
+      background: url("/images/sphere-small.png");
+      background-size:100%;
+    }
+
+    .logo {
+      position: absolute;
+      top: 24px;
+      right: 20px;
+    }
+
+    </style>
+
+
+</head>
+<body>
+    <div id="content">
+        <div class="heading">
+            <h1 class="english">Google + Fashion 2014</h1>
+            <hr></hr>
+            <h2 class="collectionName english">Collection Name</h2>
+        </div>
+
+    <div class="middleSection">
+        <div class="material" id="material1">     
+      
+          <canvas width="150" height = "150" id="mat1"></canvas>
+          <div class="colorBox">
+            <span class="label english black">Color</span>
+            <input id="color1" type="text" value="#FF0000"></input>
+          </div>
+
+          <div class="materialSelect"> 
+            <select id="materialSelect1">
+              <option value ="assets/textures/matcaps_extact/Soft.png" data-type="matte" selected>Matte</option>
+              <option value="assets/textures/matcaps_extact/Metal-Tungsten-Lighter.png" data-type="metal">Metal</option>
+              <option value="assets/textures/matcaps_extact/Steel-Brushed-Lighter.png" data-type="steel">Steel</option>
+              <option value ="assets/textures/matcaps_extact/Cyan_Glow2.png" data-type="glow">Glow</option>
+              <option value ="assets/textures/matcaps_extact/GlossyPurple.png" data-type="bright">Bright</option>
+              <option value ="assets/textures/matcaps_extact/GlossyGray.png" data-type="gloss">Gloss</option>
+              <option value ="assets/textures/matcaps_extact/Candy.png" data-type="candy">Candy</option>
+              <option value ="assets/textures/matcaps_extact/Ice.png" data-type="ice">Ice</option>
+              <option value ="assets/textures/matcaps_extact/MatGold.png" data-type="gold">Gold</option>
+              <option value ="assets/textures/matcaps_extact/Chrome.png" data-type="chrome">Chrome</option>
+              <option value ="assets/textures/matcaps_extact/Blue_Mirror.png" data-type="bluemirror">Blue Mirror</option>
+              <option value ="assets/textures/matcaps_extact/plastic_red.png" data-type="rubber">Rubber</option>
+            </select>
+
+            <div class="arrows">
+             <a class="Larrow"> <img  src="/images/arrow-left-black.svg"/></a>
+             <a class="Rarrow"> <img  src="/images/arrow-right-black.svg"/></a>
+            </div>
+          </div>
+
+        </div>  
+
+        <div class="material" id="material2"> 
+       
+          <canvas width="150" height = "150" id="mat2"></canvas>
+          <div class="colorBox">
+            <span class="label english black">Color</span>
+            <div class="color" id="colorSelect2"><input id="color2" type="text" value="#44DDFF"></input></div>
+            <!--
+            <span class="label english black tab inactive">Image</span>
+            
+            <div class="upload" style="display:none;"><span class="english"></span>
+              <p>Drop Image Here to Upload</p>
+              <form action="/upload" class="dropzone square" id="image1">
+</form></div>
+-->
+          </div>
+
+          <div class="materialSelect"> 
+            <select id="materialSelect2">
+              <option value ="assets/textures/matcaps_extact/Soft.png" data-type="matte">Matte</option>
+              <option value="assets/textures/matcaps_extact/Metal-Tungsten-Lighter.png" data-type="metal" selected>Metal</option>
+              <option value="assets/textures/matcaps_extact/Steel-Brushed-Lighter.png" data-type="steel">Steel</option>
+              <option value ="assets/textures/matcaps_extact/Cyan_Glow2.png" data-type="glow">Glow</option>
+              <option value ="assets/textures/matcaps_extact/GlossyPurple.png" data-type="bright">Bright</option>
+              <option value ="assets/textures/matcaps_extact/GlossyGray.png" data-type="gloss">Gloss</option>
+              <option value ="assets/textures/matcaps_extact/Candy.png" data-type="candy">Candy</option>
+              <option value ="assets/textures/matcaps_extact/Ice.png" data-type="ice">Ice</option>
+              <option value ="assets/textures/matcaps_extact/MatGold.png" data-type="gold">Gold</option>
+              <option value ="assets/textures/matcaps_extact/Chrome.png" data-type="chrome">Chrome</option>
+              <option value ="assets/textures/matcaps_extact/Blue_Mirror.png" data-type="bluemirror">Blue Mirror</option>
+              <option value ="assets/textures/matcaps_extact/plastic_red.png" data-type="rubber">Rubber</option>
+            </select>
+            <div class="arrows">
+             <a class="Larrow"> <img  src="/images/arrow-left-black.svg"/></a>
+             <a class="Rarrow"> <img  src="/images/arrow-right-black.svg"/></a>
+            </div>
+          </div>
+
+        </div>  
+
+        <div class="material" id="material3"> 
+    
+          <canvas width="150" height="150" id="mat3"></canvas>
+          <div class="colorBox">
+          <!--
+            <span class="label english black tab inactive">Color</span>
+          -->
+          <!--
+            <div class="color" id="colorSelect3" style="display:none;"><input id="color3" type="text" value="#FFFFFF"></input></div>
+          -->
+            <span class="label english black tab inactive">Pattern</span>
+            <span class="label english black tab ">Upload</span>
+            
+            <div class="upload" ><span class="english"></span>
+              <p>Drop Image Here to Upload</p>
+              <form action="/upload" class="dropzone square" id="image1">
+              </form>
+            </div>
+
+            
+            <div class="color patterns" style="display:none"><span class="english"></span>
+              <img class="pattern" src="/assets/textures/houndstooth.png" />
+              <img class="pattern" src="/assets/textures/damask.png" />
+              <img class="pattern" src="/assets/textures/damask-invert.png" />
+              <img class="pattern" src="/assets/textures/checker.png" />
+              <img class="pattern" src="/assets/textures/plaid.png" />
+              <img class="pattern" src="/assets/textures/plaid1.png" />
+              <img class="pattern" src="/assets/textures/stripe-large-horizontal.png" />
+              <img class="pattern" src="/assets/textures/horizontal_stripes2.png" />
+              <img class="pattern" src="/assets/textures/horizontal_stripes_wide.png" />
+              <img class="pattern" src="/assets/textures/horizontal_stripes_wide2.png" />
+              <img class="pattern" src="/assets/textures/stripe-large.png" />
+              <img class="pattern" src="/assets/textures/vertical_stripes2.png" />
+              <img class="pattern" src="/assets/textures/vertical_stripes_wide2.png" />
+              <img class="pattern" src="/assets/textures/diagonal_stripes.png" />
+              <img class="pattern" src="/assets/textures/honeycomb2.png" />
+              <img class="pattern" src="/assets/textures/zebra.png" />
+              <img class="pattern" src="/assets/textures/leopard.png" />
+              <img class="pattern" src="/assets/textures/chevron2.png" />
+              <img class="pattern" src="/assets/textures/chevron3.png" />
+              <img class="pattern" src="/assets/textures/black-dots.png" />
+            </div>
+
+          </div>
+        </div>
+
+
+        <div class="material" id="material4"> 
+          <canvas width="150" height = "150" id="mat4"></canvas>
+      
+          <div class="colorBox">
+
+            <span class="label english black tab inactive">Pattern</span>
+            <span class="label english black tab ">Upload</span>
+            
+            <div class="upload" ><span class="english"></span>
+              <p>Drop Image Here to Upload</p>
+              <form action="/upload" class="dropzone square" id="image2">
+              </form>
+            </div>
+
+            
+            <div class="color patterns" style="display:none"><span class="english"></span>
+              <img class="pattern" src="/assets/textures/houndstooth.png" />
+              <img class="pattern" src="/assets/textures/damask.png" />
+              <img class="pattern" src="/assets/textures/damask-invert.png" />
+              <img class="pattern" src="/assets/textures/checker.png" />
+              <img class="pattern" src="/assets/textures/plaid.png" />
+              <img class="pattern" src="/assets/textures/plaid1.png" />
+              <img class="pattern" src="/assets/textures/stripe-large-horizontal.png" />
+              <img class="pattern" src="/assets/textures/horizontal_stripes2.png" />
+              <img class="pattern" src="/assets/textures/horizontal_stripes_wide.png" />
+              <img class="pattern" src="/assets/textures/horizontal_stripes_wide2.png" />
+              <img class="pattern" src="/assets/textures/stripe-large.png" />
+              <img class="pattern" src="/assets/textures/vertical_stripes2.png" />
+              <img class="pattern" src="/assets/textures/vertical_stripes_wide2.png" />
+              <img class="pattern" src="/assets/textures/diagonal_stripes.png" />
+              <img class="pattern" src="/assets/textures/honeycomb2.png" />
+              <img class="pattern" src="/assets/textures/zebra.png" />
+              <img class="pattern" src="/assets/textures/leopard.png" />
+              <img class="pattern" src="/assets/textures/chevron2.png" />
+              <img class="pattern" src="/assets/textures/chevron3.png" />
+              <img class="pattern" src="/assets/textures/black-dots.png" />
+            </div>
+          </div>
+        </div>
+    </div>
+
+
+
+
+        <div class="navigation">
+            <a href="/embellish" id="prevLink"><img src="/images/login/arrow-left.svg" alt="left arrow"> </a>
+
+            <div class="centered">
+                <span class="circle "></span>
+                <span class="circle "></span>
+                <span class="circle "></span>
+                <span class="circle circle-active"></span>
+                <span class="circle "></span>
+                
+    <h2 class="english"> Materials</h2>
+
+            </div> 
+            <a id="nextLink" onclick="saveMaterials();">
+                <img src="/images/login/arrow-right.svg" alt="right arrow"> 
+            </a>        
+            
+        </div>
+
+        
+    <!--FOOTER-->
+  <div id="footer">
+    <div class="inner_footer">
+      <ul>
+        <li class="link"><a href="http://google.com">GOOGLE</a></li>
+        <li>/</li>
+        <li class="link"><a class="fancy_bt fancybox.ajax" href="/logout">LOGOUT</a></li>
+      </ul>
+    </div>
+  </div>
+      
+    <div id="rightColumn" class="column"> 
+
+      <div class="logo"><img src="images/common/logo-v.svg" alt="ROSE" width="40" height="116"/></div>
+    </div>
+    
+    </div>
+   <script>
+   var urlParams;
+   var gender = "female";
+   var language = "english";
+    (window.onpopstate = function () {
+        var match,
+            pl     = /\+/g,  // Regex for replacing addition symbol with a space
+            search = /([^&=]+)=?([^&]*)/g,
+            decode = function (s) { return decodeURIComponent(s.replace(pl, " ")); },
+            query  = window.location.search.substring(1);
+
+        urlParams = {};
+        while (match = search.exec(query))
+           urlParams[decode(match[1])] = decode(match[2]);
+    })();
+
+
+var collection;
+var materials;
+$(document).ready(function() { 
+  $.get( "/api/user/collection", function(data ) {
+        console.log(data);
+        collection = data;
+        gender = collection.gender;
+        $(".collectionName").html(collection.collectionName);
+        $("#prevLink").attr("href", "/embellish?gender="+gender+"&garment="+collection.garments[0].name) ;
+
+        materials = collection.materials;
+        if (materials) {
+          //matView1.setColor(materials[0].colorHex);
+          //matView2.setColor(materials[1].colorHex);
+          //matView3.setImage(materials[2].image);
+          makePreview("mat1", materials[0].image, materials[0].colorHex);
+          makePreview("mat2", materials[1].image, materials[1].colorHex);
+ 
+         // matView3.newMaterial(materials[2].image,null, false);
+
+          $('#color1').val(materials[0].colorHex);
+          $('#color2').val(materials[1].colorHex);
+          image1 = materials[2].image;
+          image2 = materials[3].image;
+          previewPattern('mat3', image1);
+          previewPattern('mat4', image2);
+        } else {
+          
+        }
+        setTimeout(function(){initColors()}, 60);
+       
+  });
+});
+
+function hsv2hsl(hue,sat,val){
+    return[ //[hue, saturation, lightness]
+            //Range should be between 0 - 1
+        hue, //Hue stays the same
+ 
+        //Saturation is very different between the two color spaces
+        //If (2-sat)*val < 1 set it to sat*val/((2-sat)*val)
+        //Otherwise sat*val/(2-(2-sat)*val)
+        //Conditional is not operating with hue, it is reassigned!
+        sat*val/((hue=(2-sat)*val)<1?hue:2-hue), 
+    
+        hue/2 //Lightness is (2-sat)*val/2
+        //See reassignment of hue above
+    ]
+}
+
+var image1, image2;
+function saveMaterials() {
+  materials = [];
+  var c = $('#color1').wheelColorPicker('getColor');
+  materials.push({
+    color:  hsv2hsl(c.h, c.s, c.v),
+    colorHex: $("#color1").val(),
+    image: $("#materialSelect1 option:selected").val()
+    //materialType: matView1.getMaterial()
+  });
+  c = $('#color2').wheelColorPicker('getColor');
+  materials.push({
+    color: hsv2hsl(c.h, c.s, c.v),
+    colorHex: $("#color2").val(),
+    image: $("#materialSelect2 option:selected").val()
+    //materialType: matView2.getMaterial()
+  });
+  materials.push({
+    //color: $('#color3').val(),
+    color: [0, 0, 1],
+    colorHex: "#FFFFFF",
+    image: image1
+  });
+  materials.push({
+    //color: $('#color3').val(),
+    color: [0, 0, 1],
+    colorHex: "#FFFFFF",
+    image: image2
+  });
+
+  console.log(materials);
+  collection.materials = materials;
+
+  var postData = JSON.stringify(collection);
+        $.ajax ({
+            url : "/collection",
+            type: "POST",
+            data: {data: postData},
+            success: function (data) {
+                window.location = "/generate";
+                //console.log(data);
+            },
+            error: function() {
+                console.log("failed to save collection");
+            }
+      });
+
+}
+
+Dropzone.options.image1 = {
+  init: function() {
+    this.on("addedfile", function(file) { 
+      console.log("Added file."); 
+    });
+    this.on("success", function(file, data) {
+      console.log(data);
+      //matView3.setImage(data);
+      previewPattern("mat3", data);
+      image1 = "/"+data;
+    });
+  }
+};
+
+Dropzone.options.image2 = {
+  init: function() {
+    this.on("addedfile", function(file) { 
+      console.log("Added file."); 
+    });
+    this.on("success", function(file, data) {
+      console.log("texture 2 " + data);
+      image2 = "/"+data;
+      previewPattern("mat4", data);
+      //matView3.setImage(data);
+    });
+  }
+};
+
+
+
+  //var matView1 = new MaterialPreview("matView1","assets/textures/matcaps_extact/Steel-Brushed.png");
+  //matView1.setBGColor("transparent");
+
+  //var matView2 = new MaterialPreview("matView2","assets/textures/matcaps_extact/GlossyGray.png");
+  //matView2.setBGColor("transparent");
+
+ // var matView3 = new MaterialPreview("matView3");
+ // matView3.setMaterial("matte");
+ // matView3.setBGColor("transparent");
+
+  makePreview("mat1", $("#materialSelect1 option:selected").val(), $("#color1").val());
+  makePreview("mat2", $("#materialSelect2 option:selected").val(), $("#color2").val());
+
+  function initColors() {
+    $('#color1').wheelColorPicker({
+    layout: 'block',
+    format: 'css',
+    preview: false,
+    sliders: 'v'
+  });
+  $('#color1').on('sliderup', function() {
+    var c = $(this).wheelColorPicker('getColor');
+    //matView1.setColor(hsv2hsl(c.h, c.s, c.v));
+    makePreview("mat1", $("#materialSelect1 option:selected").val(), $("#color1").val());
+  });
+
+  $('#color2').wheelColorPicker({
+    layout: 'block',
+    format: 'css',
+    preview: false,
+    sliders: 'v'
+  });
+  $('#color2').on('sliderup', function() {
+    var c = $(this).wheelColorPicker('getColor');
+    //matView2.setColor(hsv2hsl(c.h, c.s, c.v));
+    makePreview("mat2", $("#materialSelect2 option:selected").val(), $("#color2").val());
+  });
+  }
+
+  $("#material3 .pattern").click(function(){
+   // matView3.newMaterial($(this).attr('src'),null, false);
+    image1 = $(this).attr('src');
+    previewPattern("mat3", image1);
+  });
+
+  $("#material4 .pattern").click(function(){
+    //matView3.newMaterial($(this).attr('src'),null, false);
+    image2 = $(this).attr('src');
+    previewPattern("mat4", image2);
+  });
+  
+
+  $("#material1 .Rarrow").click(function(){
+    if ($("#materialSelect1").prop('selectedIndex') == 11) {
+      $("#materialSelect1").prop('selectedIndex', 0)
+    } else {
+      $("#materialSelect1 option:selected").next().prop('selected', true);
+    }
+    //matView3.newMaterial(null, $("#materialSelect1 option:selected").val(), false);
+    makePreview("mat1", $("#materialSelect1 option:selected").val(), $("#color1").val());
+  });
+  $("#material1 .Larrow").click(function(){
+    if ($("#materialSelect1").prop('selectedIndex') == 0) {
+      $("#materialSelect1").prop('selectedIndex', 11)
+    } else {
+      $("#materialSelect1 option:selected").prev().prop('selected', true);
+    }
+    //matView1.setMaterial($("#materialSelect1 option:selected").val());
+    makePreview("mat1", $("#materialSelect1 option:selected").val(), $("#color1").val());
+  });
+
+  $("#material2 .Rarrow").click(function(){
+    if ($("#materialSelect2").prop('selectedIndex') == 11) {
+      $("#materialSelect2").prop('selectedIndex', 0)
+    } else {
+      $("#materialSelect2 option:selected").next().prop('selected', true);
+    }
+    //matView2.setMaterial($("#materialSelect2 option:selected").val());
+    makePreview("mat2", $("#materialSelect2 option:selected").val(), $("#color2").val());
+  });
+  $("#material2 .Larrow").click(function(){
+    if ($("#materialSelect2").prop('selectedIndex') == 0) {
+      $("#materialSelect2").prop('selectedIndex', 11)
+    } else {
+      $("#materialSelect2 option:selected").prev().prop('selected', true);
+    }
+    //matView2.setMaterial($("#materialSelect2 option:selected").val());
+    makePreview("mat2", $("#materialSelect2 option:selected").val(), $("#color2").val());
+  });
+
+
+  $(".tab").click( function() {
+    $(this).siblings("span").addClass("inactive");
+    $(this).removeClass("inactive");
+    $(this).siblings("div").toggle();
+  });
+
+function makePreview(canvasId, imgsrc, color) {
+  var img = new Image();
+  img.src = imgsrc;
+  img.onload = function() {
+      //var rgbks = generateRGBKs( img );
+      //var tintImg = generateTintImage( img, rgbks, 200, 50, 100 );
+      
+      var canvas = document.getElementById(canvasId);
+      var ctx = canvas.getContext("2d");
+      ctx.clearRect(0, 0, canvas.width, canvas.height);
+      ctx.globalCompositeOperation = "multiply";
+      ctx.drawImage( img, 0, 0, canvas.width, canvas.height);
+
+      ctx.globalAlpha = 1;
+      ctx.fillStyle = color;
+      ctx.fillRect( 0, 0, canvas.width, canvas.height );
+      
+      
+  }
+}
+
+function previewPattern(canvasId, imgsrc){
+  var img = new Image();
+  img.src = imgsrc;
+  var sphere = new Image();
+  sphere.src = "/images/sphere-small.png";
+
+  img.onload = function() {
+      
+      var canvas = document.getElementById(canvasId);
+      var ctx = canvas.getContext("2d");
+      ctx.clearRect(0, 0, canvas.width, canvas.height);
+      ctx.globalCompositeOperation = "multiply";
+      ctx.drawImage( sphere, 0, 0, canvas.width, canvas.height);
+      ctx.drawImage( img, 0, 0, canvas.width, canvas.height);
+
+      //ctx.globalAlpha = 1;
+      //ctx.fillStyle = color;
+      //ctx.fillRect( 0, 0, canvas.width, canvas.height );
+     }    
+}
+  
+  </script>
+ 
+    
+
+
+</body>

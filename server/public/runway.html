@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <title></title>
+		<link rel="icon" href="favicon.ico" />
+		<link rel="image_src" href="/images/rose-thumbnail_tmp.jpg" />
+
+		<!--CSS-->
+		<link rel="stylesheet" href="/stylesheets/normalize.min.css">
+		<link rel="stylesheet" href="//ajax.googleapis.com/ajax/libs/jqueryui/1.11.0/themes/smoothness/jquery-ui.css" />
+		<link rel="stylesheet" href="/stylesheets/global.css">
+		<link rel="stylesheet" href="/stylesheets/runway.css">
+
+		<script src="//ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
+
+        <script src="/js/ZeroClipboard.min.js"></script>
+        <script src="/js/runway.web.js"></script>
+
+        <style type="text/css">
+        #audioPauseButton {
+            display: block;
+            width: 40px;
+            height: 40px;
+            background: white;
+            padding: 14px;
+            position: absolute;
+            top: 170px;
+            right: 20px;
+            text-align: center;
+            cursor: pointer;
+        }
+        #audioPauseButton:hover {
+            background: black;
+            color: white;
+        }
+        </style>
+    </head>
+    <body>
+
+	<!--OVERLAY-->
+	<div id="overlay">
+		<div class="inner">
+			The Runway is a Chrome experiment.<br/><br/>
+			For an optimal experience,<br/>
+			<a class="chrome" href="https://www.google.com/chrome" target="_blank">download Google Chrome.</a>
+			<br/><br/>
+			<div class="button"><a href="javascript:void(0)" onclick="remove_overlay(); return false;"><span>IGNORE</span></a></div>
+		</div>
+	</div>
+
+	<div id="site">
+		<div class="runway">
+
+			<!--HEADER-->
+			<div id="header">
+				<div class="inner">
+					<h2>GOOGLE+ FASHION 2014</h2>
+					<hr>
+					<h2 class="collectionName english"></h2>
+					<div class="logo"><img src="/images/common/logo-v-white.svg" alt="ROSE" width="40" height="116"/></div>
+				</div>
+			</div>
+
+			<!--BACK-->
+			<div class="back">
+				<a class="nav_ajax" href="javascript:void(0)"></a>
+			</div>
+
+			<!--AUDIO-->
+			<div id="audioPauseButton">||</div>
+			<audio id="backgroundTrack" autoplay="autoplay" loop="loop" >
+				<source src="/assets/sound/googlizer.mp3" type="audio/mpeg">
+			</audio>
+
+			<!--SHARE-->
+			<div class="social_buttons">
+				<div class="item google"><a href="javascript:void(0)" onclick="popUp=window.open('https://plus.google.com/share?url=http://googlerose.com', 'popupwindow', 'scrollbars=yes,width=800,height=400');popUp.focus();return false" target="_blank"><span class="ico"><img src="/images/common/ico-google-02.svg" alt="Ico" width="20" height="18"/></span><span>SHARE</span></a></div>
+				<div id="url_share" class="item url" data-clipboard-text="Copy Me!"><a href="javascript:void(0)"><span>COPY URL</span></a></div>
+				<p class="link"></p>
+			</div>
+
+		</div>
+
+	</div>
+
+	<script>
+		(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+			(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+				m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+		})(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+		ga('create', 'UA-54270450-2', 'auto');
+		ga('send', 'pageview');
+	</script>
+
+    <script>
+        var backgroundTrack = document.getElementById('backgroundTrack');
+        var audioPauseButton = document.getElementById('audioPauseButton');
+        audioPauseButton.addEventListener('click', function() {
+            if (backgroundTrack.paused) {
+                backgroundTrack.play();
+                audioPauseButton.innerText = '||';
+            }
+            else {
+                backgroundTrack.pause();
+                audioPauseButton.innerText = '>';
+            }
+        })
+
+		$(document).ready(function(){
+
+			var is_chrome = navigator.userAgent.toLowerCase().indexOf('chrome') > -1;
+			if(!is_chrome)
+				$("#overlay").show();
+
+			var client = new ZeroClipboard( document.getElementById("url_share") );
+			$("#url_share").attr("data-clipboard-text", document.URL);
+
+			client.on( "ready", function( readyEvent ) {
+
+				client.on( "aftercopy", function( event ) {
+					$("#url_share span").html("COPIED");
+				} );
+			} );
+		})
+
+		function remove_overlay()
+		{
+			$("#overlay").hide();
+		}
+
+    </script>
+
+    </body>
+</html>

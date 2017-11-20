@@ -1,0 +1,531 @@
+<!DOCTYPE html>
+<html class="no-js">
+<head>
+	<meta charset="utf-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+	<title>Google + Fashion 2014</title>
+	<link rel="icon" href="favicon.ico" />
+	<link rel="image_src" href="/images/rose-thumbnail_tmp.jpg" />
+	<meta name="description" content="Google + Fashion 2014">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+
+	<!--CSS-->
+	<link rel="stylesheet" href="stylesheets/normalize.min.css">
+	<link rel="stylesheet" href="//ajax.googleapis.com/ajax/libs/jqueryui/1.11.0/themes/smoothness/jquery-ui.css" />
+	<link rel="stylesheet" href="stylesheets/global.css">
+
+	<!--JS-->
+	<script src="js/libs/modernizr-2.6.2.min.js"></script>
+	<script src="//ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js"></script>
+	<script>window.jQuery || document.write('<script src="js/vendor/jquery-1.11.0.min.js"><\/script>')</script>
+	<script src="//ajax.googleapis.com/ajax/libs/jqueryui/1.11.0/jquery-ui.min.js"></script>
+
+	<script src="js/designer_garments.js"></script>
+	<script src="/js/shapes.web.js"></script>
+
+</head>
+<body class="scene_background">
+
+<div id="site">
+
+<!--HEADER-->
+<div id="header">
+	<div class="inner">
+		<h2>GOOGLE+ FASHION 2014</h2>
+		<hr>
+		<h2 class="collectionName english"></h2>
+		<div class="logo"><img src="images/common/logo-v.svg" alt="ROSE" width="40" height="116"/></div>
+	</div>
+</div>
+
+<!--MAIN-->
+<div id="main_container">
+
+	<div id="embellish" class="page">
+		<div class="inner_page">
+
+		<div class="left side">
+
+			<div class="leftSidebar">
+				<div class="female list">
+					<div class="garment" data-garment="femaleDress" data-index=0>
+						<h5 class="label english">Dress</h5>
+						<a class="thumbnail" id="dress1"><img src="/images/garments/thumbnails/femaleDress.jpg" /></a>
+					</div>
+
+					<div class="garment" data-garment="femaleShirt" data-index=1>
+						<h5 class="label english">Shirt</h5>
+						<a class="thumbnail" id="shirt" data-garment="femaleShirt"><img src="/images/garments/thumbnails/femaleShirt.jpg" /></a>
+					</div>
+
+					<div class="garment" data-garment="femalePants" data-index=2>
+						<h5 class="label english">Pants</h5>
+						<a class="thumbnail" id="pants"><img src="/images/garments/thumbnails/femalePants.jpg" /></a>
+					</div>
+
+					<div class="garment" data-garment="femaleGown" data-index=3>
+						<h5 class="label english">Gown</h5>
+						<a class="thumbnail" id="dress2"><img src="/images/garments/thumbnails/femaleDress.jpg" /></a>
+					</div>
+
+					<div class="garment" data-garment="femaleCoat" data-index=4>
+						<h5 class="label english">Coat</h5>
+						<a class="thumbnail" id="coat"><img src="/images/garments/thumbnails/femaleCoat.jpg" /></a>
+					</div>
+
+					<div class="garment" data-garment="femaleCoat" data-index=5>
+						<h5 class="label english">Coat</h5>
+						<a class="thumbnail" id="coat"><img src="/images/garments/thumbnails/femaleCoat.jpg" /></a>
+					</div>
+				</div>
+
+				<div class="male list" style="display:none;">
+					<div class="garment" data-garment="maleCoat" data-index=0>
+						<h5 class="label english">Coat</h5>
+						<a class="thumbnail" id="dress2"><img src="/images/thumbnail.svg" /></a>
+					</div>
+
+					<div class="garment" data-garment="maleCoat" data-index=1>
+						<h5 class="label english">Coat</h5>
+						<a class="thumbnail" id="dress2"><img src="/images/thumbnail.svg" /></a>
+					</div>
+
+					<div class="garment" data-garment="maleShirt" data-index=2>
+						<h5 class="label english">Shirt</h5>
+						<a class="thumbnail" id="pants"><img src="/images/thumbnail.svg" /></a>
+					</div>
+
+					<div class="garment" data-garment="maleSleeveless" data-index=3>
+						<h5 class="label english">Collared Shirt</h5>
+						<a class="thumbnail" id="dress1"><img src="/images/thumbnail.svg" /></a>
+					</div>
+
+					<div class="garment" data-garment="malePants" data-index=4>
+						<h5 class="label english">Pants</h5>
+						<a class="thumbnail" id="shirt"><img src="/images/thumbnail.svg" /></a>
+					</div>
+
+					<div class="garment" data-garment="malePants" data-index=5>
+						<h5 class="label english">Pants</h5>
+						<a class="thumbnail" id="shirt"><img src="/images/thumbnail.svg" /></a>
+					</div>
+
+				</div>
+
+			</div>
+
+			<div class="container_slider rotate">
+					<div class="slider" id="rotateSlider"></div>
+					<h5 class="label english buffer ">Rotate Model</h5>
+				</div>
+
+		</div>
+
+		<div class="center">
+			<div id="viewer" style="width:700px; height:750px">
+				<canvas width="700" height="750" id="view1"></canvas>
+			</div>
+		</div>
+
+		<div class="right side">
+
+			<div class="rightSidebar list">
+				<div class="container_shape_select">
+					<div class="shapeSelect">
+						<div class="shape-icon">
+							<div class="inner">
+								<img id="sphere" src="/images/sphere.png" />
+								<img id="cube"  src="/images/cube.png" />
+							</div>
+						</div>
+						<select id="shapeSelect">
+							<option value="sphere" selected></option>
+							<option value="cube"></option>
+						</select>
+
+						<div class="arrows">
+							<a class="Larrow"><img src="/images/embellish/arrow-left.svg" width="10" height="20" /></a>
+							<a class="Rarrow"><img src="/images/embellish/arrow-right.svg" width="10" height="20" /></a>
+						</div>
+
+					</div>
+					<h5 class="label english buffer">Select Shape</h5>
+				</div>
+
+				<div class="container_slider">
+					<div class="slider" id="sizeSlider"></div>
+					<h5 class="label english buffer ">Size</h5>
+				</div>
+
+				<div class="buffer">
+					<input type="checkbox" name="r_size" id="r_size"><label for="r_size" class="label english">Random size</label>
+				</div>
+
+
+				<a class="button blue-button" id="undoButton" onClick="shapeView1.undo();">
+					<span class="english">Undo</span>
+				</a>
+				<a class="button blue-button" id="clearButton" onClick="shapeView1.clearShapes();">
+					<span class="english">Clear</span>
+				</a>
+
+			</div>
+
+		</div>
+
+	<div class="overlay" style="display:none;">
+		<div class="inner_overlay">
+			<div class="bt_close"><a href="javascript:void(0)" onclick="remove_overlay(); return false;"><img src="/images/common/ico-close.svg" width="18" height="18" alt=""/></a></div>
+
+			<div class="inner">
+				<p>Start your collection by creating garments. Select the garment you want to work with enim ipsam voluptatem quia voluptas sit aspernatur aut odit aut fugit, sed quia consequuntur magni dolores eos qui ratione voluptatem sequi nesciunt. Neque porro quisquam est, qui dolorem ipsum quia dolor sit amet, consectetur.</p>
+			</div>
+		</div>
+	</div>
+
+	</div>
+	</div>
+</div>
+
+<!--NAVIGATION-->
+<div id="navigation">
+
+	<div class="left">
+		<a id="prevLink">
+			<img src="/images/login/arrow-left.svg" alt="left arrow" width="35" height="35">
+		</a>
+	</div>
+
+	<div class="center">
+		<ul>
+			<li class="circle"></li><!--
+			--><li class="circle"></li><!--
+			--><li class="circle circle-active"></li><!--
+			--><li class="circle"></li><!--
+			--><li class="circle"></li>
+		</ul>
+		<h2>EMBELLISHMENT</h2>
+	</div>
+
+	<div class="right">
+		<a id="nextLink" >
+			<img src="/images/login/arrow-right.svg" alt="left arrow" width="35" height="35">
+		</a>
+	</div>
+
+	<div class="cb"></div>
+
+</div>
+
+<!--FOOTER-->
+<div id="footer">
+	<div class="inner_footer">
+		<ul>
+			<li class="link"><a href="http://google.com">GOOGLE</a></li><!--
+					--><li>/</li><!--
+					--><li class="link"><a class="fancy_bt fancybox.ajax" href="/logout">LOGOUT</a></li>
+		</ul>
+	</div>
+</div>
+
+</div>
+
+<!--BACKGROUND-->
+<div id="site_background">
+	<ul id="scene">
+		<li class="gradient layer" data-depth="0.00"></li>
+		<li class="image layer" data-depth="0.40"></li>
+		<li class="dots layer" data-depth="0.00"></li>
+	</ul>
+</div>
+
+<script>
+var urlParams;
+var gender = "female";
+var language = "english";
+(window.onpopstate = function () {
+	var match,
+			pl     = /\+/g,  // Regex for replacing addition symbol with a space
+			search = /([^&=]+)=?([^&]*)/g,
+			decode = function (s) { return decodeURIComponent(s.replace(pl, " ")); },
+			query  = window.location.search.substring(1);
+
+	urlParams = {};
+	while (match = search.exec(query))
+		urlParams[decode(match[1])] = decode(match[2]);
+})();
+
+
+var collection;
+var garments = new Array();
+var morphs = [1,.5,.5];
+var ASSETS_URL;
+var shapeView1;
+var currentGarment = "femaleDress";
+var shapes = [];
+var currentIndex = 0;
+
+
+
+$(document).ready(function() {
+
+	
+	if(urlParams.index) {
+		currentIndex = urlParams.index;
+	} else {
+		currentIndex = 0;
+	}
+	currentGarment= urlParams.garment;
+
+
+	$(window).load(function() {
+        ShapeNames.forEach(function(shape, shapeIndex) {
+            $("#shapeSelect").append("<option value='"+shape+"'></option>");
+            $(".shape-icon .inner").first().append("<img id='"+shape+"' src='/assets/shapes/jody/images/"+shape+".png' width=100>");
+        });
+        $.get("/api/designer/", function(data){
+			designer = data;
+			console.log(designer);
+		});
+
+		$.get( "/api/user/collection", function(data ) {
+			console.log(data);
+			collection = data;
+			gender = collection.gender;
+			garments = collection.garments;
+			ASSETS_URL = '/assets/'+gender+"/";
+
+			if(!currentGarment) {
+				
+				currentGarment= garments[0].name;
+			}
+
+			if (gender == "male") {
+				$(".female").remove();
+				$(".male").show();
+				if(currentGarment) {
+					shapeView1 = new ShapesView("view1", ASSETS_URL + 'male_model_new.js' , garments[currentIndex], garments[currentIndex].morphs);
+				}
+			} else {
+				if(currentGarment) {
+					//shapeView1 = new ShapesView("view1", ASSETS_URL + 'female_default.js' , ASSETS_URL + currentGarment+ '.js', morphs);
+					shapeView1 = new ShapesView("view1",ASSETS_URL+ 'female_model_new.js', garments[currentIndex], garments[currentIndex].morphs);
+				}
+			}
+
+			if(collection.garments[currentIndex].shapeIndex) {
+				shapeType = collection.garments[currentIndex].shapeType;
+				shapeIndex = collection.garments[currentIndex].shapeIndex;
+			}
+			$(".shape-icon img").eq(shapeIndex).show();
+		    for (var i=0; i<shapeIndex; i++) {
+		        $(".shape-icon img").eq(i).hide();
+		    }
+		    for (var i=shapeIndex+1; i<($(".shape-icon img").length); i++) {
+		        $(".shape-icon img").eq(i).hide();
+		    }
+			
+
+
+			$(".collectionName").html(collection.collectionName);
+			//console.log(collection.garments1[name]);
+
+/*
+			for (var i=0; i<garments.length; i++) {
+				var garment = garments[i];
+				var element = $("div[data-garment='"+garment.name+"']");
+				element.addClass('active-garment');
+				element.attr('data-index', i);
+				//element.add("data-index="+ i);
+				element.show();
+				element.append("<input type='hidden' class='shapeValues' data-garment='"+garment.name+"'>");
+			}
+			*/
+			for (var i=0; i<garments.length; i++) {
+				//$("#"+gender).append()
+				$(".garment").eq(i).show();
+				$(".garment").eq(i).addClass('active-garment');
+				$(".garment").eq(i).attr('data-index', i);
+				$(".garment").eq(i).attr("data-garment", garments[i].name);
+				$(".garment .label").eq(i).html(garments[i].name);
+				if(collection.gender == 'female') {
+					$(".garment img").eq(i).attr('src', 'images/garments/thumbnails/'+garments[i].name+".jpg");
+				}
+				
+			}
+
+			$(".garment .thumbnail").eq(currentIndex).addClass("active-thumbnail");
+			//$("div[data-garment='"+currentGarment+"'] a").addClass("active-thumbnail");
+			//currentIndex= parseInt($("div[data-garment='"+currentGarment+"']").attr('data-index'));
+			
+		});
+
+	});
+
+
+});
+
+function loadShapes(){
+	if (collection.garments[currentIndex].shapes) {
+		//shapeView1.setShapes(collection.garments[currentIndex].shapes);
+		shapes = collection.garments[currentIndex].shapes;
+		for (var a=0; a<shapes.length; a++) {
+			shapeView1.addShape(shapes[a]);
+		}
+	}
+}
+
+function setMorphs() {
+	var morphs=shapeView1.getView().getLook().getGarment().morphTargetInfluences;
+	for (var a=0; a<garments[currentIndex].morphs.length; a++) {
+		morphs[a+1]=garments[currentIndex].morphs[a];
+	}
+}
+function setShape() {
+	if(collection.garments[currentIndex].shapeIndex) {
+		shapeType = collection.garments[currentIndex].shapeType;
+		shapeIndex = collection.garments[currentIndex].shapeIndex;
+		checkShape();
+	}
+
+	
+}
+
+
+$("#prevLink").click(function() {
+	saveCollection("/garments?designer="+designer);
+});
+
+$("#nextLink").click(function() {
+	collection.garments[currentIndex].shapes = shapeView1.getShapes();
+	saveCollection("/materials");
+});
+
+function saveCollection(location) {
+	//collection.shapeType = shapeType;
+	collection.garments[currentIndex].shapes = shapeView1.getShapes();
+	collection.garments[currentIndex].shapeType = shapeType;
+	collection.garments[currentIndex].shapeIndex = shapeIndex;
+	var postData = JSON.stringify(collection);
+	$.ajax ({
+		url : "/collection",
+		type: "POST",
+		data: {data: postData},
+		success: function (data) {
+			window.location = location;
+		},
+		error: function() {
+			console.log("failed to save collection");
+		}
+	});
+
+}
+
+$(".thumbnail").mousedown(function(){
+
+	if (!$(this).hasClass('active-thumbnail')) {
+	}
+
+	collection.garments[currentIndex].shapes = shapeView1.getShapes();
+	console.log(collection.garments[currentIndex].shapes);
+});
+
+$(".thumbnail").mouseup(function(){
+	if (!$(this).hasClass('active-thumbnail')) {
+		currentGarment = $(this).parent().attr('data-garment');
+		var index = $(this).parent().attr('data-index');
+		console.log(currentGarment);
+		saveCollection("/embellish?language="+language+"&garment="+currentGarment+"&index="+index);
+
+		//window.location = "/embellish?language="+language+"&garment="+currentGarment;
+	}
+
+
+
+	$(".garment .thumbnail").removeClass("active-thumbnail");
+	$(this).addClass("active-thumbnail");
+
+});
+
+
+$( "#sizeSlider" ).slider({
+	min: 20,
+	max: 200,
+	value: 100,
+	slide: function (event, ui) {
+		shapeView1.setSize($(this).slider("option", "value")/100);
+	}
+});
+
+$( "#rotateSlider" ).slider({
+	min: 0,
+	max: 360,
+	value: 0,
+	slide: function (event, ui) {
+		var angle = $(this).slider("option", "value");
+		shapeView1.setRotation(angle);
+	}
+});
+
+shapeIndex = 0;
+var shapeType = "sphere";
+function checkShape() {
+	if (shapeIndex == 0) {
+		shapeView1.changeShape('sphere');
+		shapeType = 'sphere';
+		//shapeView2.changeShape('sphere');
+		//shapeView3.changeShape('sphere');
+	} else if (shapeIndex == 1) {
+		shapeView1.changeShape('cube');
+		shapeType = 'cube';
+		//shapeView2.changeShape('cube');
+		//shapeView3.changeShape('cube');
+    } else {
+        shapeType = ShapeNames[shapeIndex-2];
+        shapeView1.changeShape(shapeType);
+    }
+
+    $(".shape-icon img").eq(shapeIndex).show();
+    for (var i=0; i<shapeIndex; i++) {
+        $(".shape-icon img").eq(i).hide();
+    }
+    for (var i=shapeIndex+1; i<($(".shape-icon img").length); i++) {
+        $(".shape-icon img").eq(i).hide();
+    }
+    console.log("change shape to " + shapeType);
+    console.log("change shape index to " + shapeIndex);
+	collection.garments[currentIndex].shapeType=shapeType;
+	collection.garments[currentIndex].shapeIndex = shapeIndex;
+	//collection.shapeIndex = shapeIndex;
+}
+
+$(".shapeSelect .Rarrow").click(function(){
+	shapeIndex ++;
+	if (shapeIndex>ShapeNames.length+1) {
+		shapeIndex = 0;
+	}
+
+	checkShape();
+});
+
+$(".shapeSelect .Larrow").click(function(){
+	shapeIndex --;
+	if (shapeIndex<0) {
+		shapeIndex = ShapeNames.length+1;
+	}
+	checkShape();
+});
+
+$("input[type='checkbox']").change(function() {
+	if ($(this).prop("checked") == true) {
+		shapeView1.setRandom(true);
+	} else {
+		shapeView1.setRandom(false);
+	}
+});
+
+</script>
+
+<script src="js/app.min.js"></script>
+</body>
+</html>

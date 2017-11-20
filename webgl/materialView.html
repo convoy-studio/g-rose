@@ -1,0 +1,160 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <title></title>
+        <script src="materialView.web.js"></script>
+
+        <script type="text/javascript">
+        function generateRGBKs( img ) {
+        var w = img.width;
+        var h = img.height;
+        var rgbks = [];
+
+        var canvas = document.createElement("canvas");
+        canvas.width = w;
+        canvas.height = h;
+        
+        var ctx = canvas.getContext("2d");
+        ctx.drawImage( img, 0, 0 );
+        
+        var pixels = ctx.getImageData( 0, 0, w, h ).data;
+
+        // 4 is used to ask for 3 images: red, green, blue and
+        // black in that order.
+        for ( var rgbI = 0; rgbI < 4; rgbI++ ) {
+            var canvas = document.createElement("canvas");
+            canvas.width  = w;
+            canvas.height = h;
+            
+            var ctx = canvas.getContext('2d');
+            ctx.drawImage( img, 0, 0 );
+            var to = ctx.getImageData( 0, 0, w, h );
+            var toData = to.data;
+            
+            for (
+                    var i = 0, len = pixels.length;
+                    i < len;
+                    i += 4
+            ) {
+                toData[i  ] = (rgbI === 0) ? pixels[i  ] : 0;
+                toData[i+1] = (rgbI === 1) ? pixels[i+1] : 0;
+                toData[i+2] = (rgbI === 2) ? pixels[i+2] : 0;
+                toData[i+3] =                pixels[i+3]    ;
+            }
+            
+            ctx.putImageData( to, 0, 0 );
+            
+            // image is _slightly_ faster then canvas for this, so convert
+            var imgComp = new Image();
+            imgComp.src = canvas.toDataURL();
+            
+            rgbks.push( imgComp );
+        }
+
+        return rgbks;
+      }
+
+      function generateTintImage( img, rgbks, red, green, blue ) {
+        var buff = document.createElement( "canvas" );
+        buff.width  = img.width;
+        buff.height = img.height;
+        
+        var ctx  = buff.getContext("2d");
+
+        ctx.globalAlpha = 1;
+        ctx.globalCompositeOperation = 'copy';
+        ctx.drawImage( rgbks[3], 0, 0 );
+
+        ctx.globalCompositeOperation = 'lighter';
+        if ( red > 0 ) {
+            ctx.globalAlpha = red   / 255.0;
+            ctx.drawImage( rgbks[0], 0, 0 );
+        }
+        if ( green > 0 ) {
+            ctx.globalAlpha = green / 255.0;
+            ctx.drawImage( rgbks[1], 0, 0 );
+        }
+        if ( blue > 0 ) {
+            ctx.globalAlpha = blue  / 255.0;
+            ctx.drawImage( rgbks[2], 0, 0 );
+        }
+
+        return buff;
+      }
+
+        window.onload = function() {
+            var img = new Image();
+            img.src = "assets/textures/matcaps_extact/MatGold.png";
+            img.onload = function() {
+                var rgbks = generateRGBKs( img );
+                var tintImg = generateTintImage( img, rgbks, 200, 50, 100 );
+                
+                var canvas = document.getElementById("temp");
+                var ctx = canvas.getContext("2d");
+                ctx.fillStyle = "black";
+                //ctx.fillRect( 0, 0, 100, 100 );
+                
+                ctx.drawImage( tintImg, 0, 0 );
+                var url = tintImg.toDataURL();
+                var matView4 = new MaterialPreview("matView4",url);
+            }
+            
+        }
+       </script>
+
+    </head>
+    <body>
+      <canvas width="256" height="256" id="matView1"></canvas>
+      <canvas width="256" height="256" id="matView2"></canvas>
+      <canvas width="256" height="256" id="matView3"></canvas>
+      <canvas width="256" height="256" id="matView4"></canvas>
+      <canvas width="256" height="256" id="matView5"></canvas>
+      <canvas width="256" height="256" id="matView6"></canvas>
+      <canvas width="256" height="256" id="matView7"></canvas>
+      <canvas width="256" height="256" id="matView8"></canvas>
+      <canvas width="512" height="512" id="temp"></canvas>
+
+      <div id="renders"></div>
+      <script>
+      var matView1 = new MaterialPreview("matView1","assets/textures/GlossyGray.png");
+      //matView1.setMaterial("flat");
+      //matView1.setColor("#FF0000");
+      matView1.setBGColor("transparent");
+
+      var matView2 = new MaterialPreview("matView2","assets/textures/matcaps_extact/Soft.png");
+      //matView2.setMaterial("matte");
+      //matView2.setColor("#44FF77");
+     //matView2.newMaterial("assets/textures/matcaps_extact/MatGold.png","assets/textures/pattern_4.jpg");
+      
+      //matView2.setColor([.8, 1, .5]);
+      //matView2.setMatCap("assets/textures/matcaps_extact/Ice.png")
+      //matView2.setBGColor("transparent");
+
+      var matView3 = new MaterialPreview("matView3", "assets/textures/matcaps_extact/Skin1.png");
+      matView3.setBGColor("transparent");
+
+
+      function test() {
+       var canvas = document.getElementById("myDrawing");
+       var url = canvas.toDataURL();
+
+       var matView4 = new MaterialPreview("matView4",url);
+      }
+
+      function makeRender(elementId, id, garmentId) {
+        var canvas = document.getElementById(elementId);
+        if (canvas.getContext) {
+         var ctx = canvas.getContext("experimental-webgl", {preserveDrawingBuffer: true});                
+           var myImage = canvas.toDataURL();  
+           var img = document.createElement("img");
+            img.src = myImage;  
+            document.getElementById(elementId).appendChild(img);   
+
+        }
+                                
+      }
+ 
+      </script>
+    </body>
+</html>

@@ -1,0 +1,16 @@
+node_modules
+.DS_Store
+.log
+/.idea/
+
+/.sass-cache/
+/config.codekit
+/config.rb
+/dev/
+
+/server/public/_tpl.html
+
+/bower_components/
+
+/server/data/
+/server/uploads/

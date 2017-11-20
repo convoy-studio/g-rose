@@ -1,0 +1,675 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <title></title>
+		<link rel="icon" href="favicon.ico" />
+		<link rel="image_src" href="/images/rose-thumbnail_tmp.jpg" />
+        <link href='http://fonts.googleapis.com/css?family=EB+Garamond' rel='stylesheet' type='text/css'>
+        <link href='http://fonts.googleapis.com/css?family=Karla:400,700' rel='stylesheet' type='text/css'>
+        <link href='http://fonts.googleapis.com/css?family=Varela+Round' rel='stylesheet' type='text/css'>
+        <link rel="stylesheet" href="stylesheets/main.css" type='text/css'>
+
+        <script src="//ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
+        <script src="js/generate.web.js"></script>
+        <script src="/js/color.js"></script>
+
+        <style>
+          #progress-notice {
+            position: absolute;
+            top: 200px;
+            background: rgba(255,255,255,.7);
+            padding: 25px;
+            font-size: 24px;
+            width: 100%;
+            text-align: center;
+          }
+          #finalCollection {
+            width: 1280px;
+            margin: auto auto;
+            margin-top: 20px;
+          }
+          #finalCollection img{
+            -webkit-transform: scale(1, 1);
+            width:250px;
+            display: inline-block;
+          }
+          #finalButtons {
+            width: 1280px;
+            margin: auto auto;
+            margin-top: 20px;
+          }
+          #finalButtons a{
+            width: 255px;
+            padding: 15px;
+            border: 3px solid gray;
+            background-color: transparent;
+            color: gray;
+            font-size: 22px;
+            letter-spacing: 2px;
+            font-weight: lighter;
+            display:inline-block;
+            margin-right: 15px;
+          }
+          #finalButtons a:hover{
+            color: white;
+            background-color: gray;
+          }
+          .renders img{
+            -webkit-transform: scale(1, 1);
+            width: 200px;
+            display:inline-block;
+            //margin:30px;
+            float: left;
+            padding:1px;
+
+          }
+          .renders {
+            width: 70%;
+            float: right;
+            //border-bottom: 1px solid black;
+            position:absolute;
+            top:0;
+            right:0px;
+          }
+          img.active {
+            border: 1px solid grey;
+            padding:0px;
+          }
+          .variant:hover{
+            background: white;
+          }
+          #viewport {
+            margin: auto auto;
+            width: 500px;
+            position:relative;
+            opacity:0;
+          }
+          #selections img{
+            -webkit-transform: scale(1, 1);
+            width:100px;
+            margin:4px;
+            background: white;
+            padding:3px;
+            float: left;
+          }
+          .leftSidebar {
+            width: 232px;
+            padding-top: 85px;
+          }
+          .placeholder {
+            width: 100px;
+            height:140px;
+            margin:4px;
+            background: white;
+            padding:3px;
+            display: inline-block;
+            float: left;
+          }
+
+        </style>
+
+
+    </head>
+    <body>
+      <div id="content">
+        <div id="leftColumn" class="column">
+          
+          <div class="leftSidebar">
+            <p>Select 2 Looks and then click "Next"</p>
+            <a class="button" onclick="RoseClick();" id="roseButton">Next</a>
+            <div id="selections">
+            </div>
+            <span class="placeholder"></span>
+            <span class="placeholder"></span>
+            <span class="placeholder"></span>
+            <span class="placeholder"></span>
+            <span class="placeholder"></span>
+            <span class="placeholder"></span>
+            <span class="placeholder"></span>
+            <span class="placeholder"></span>
+            <span class="placeholder"></span>
+            <span class="placeholder"></span>
+
+          </div>
+        </div>
+
+
+        <div id="viewport">
+          <canvas width="550" height="700" id="view"></canvas>
+          <h2 id="progress-notice">Generating Designs...</h2>
+        </div>
+  <!--
+        <br/> Rotation <input type="range" id="rotation" min="-180" max="180">
+      -->
+        <div id="finalCollection" style="display:none;"></div>
+        <div id="finalButtons" style="display:none;">
+          <a href="" class="button">Start Over</a>
+          <a class="button">Go To Runway</a>
+        </div>
+        <div class="renders" id="gen0"></div>
+        <div class="renders" id="gen1"></div>
+        <div class="renders" id="gen2"></div>
+        <div class="renders" id="gen3"></div>
+        <div class="renders" id="gen4"></div>
+      </div>
+
+      <script>
+      var urlParams;
+      var ASSETS_URL = '/assets/'; 
+
+      (window.onpopstate = function () {
+        var match,
+            pl     = /\+/g,  // Regex for replacing addition symbol with a space
+            search = /([^&=]+)=?([^&]*)/g,
+            decode = function (s) { return decodeURIComponent(s.replace(pl, " ")); },
+            query  = window.location.search.substring(1);
+
+        urlParams = {};
+        while (match = search.exec(query))
+           urlParams[decode(match[1])] = decode(match[2]);
+      })();
+      var designer = urlParams.designer;
+
+      var bodyFile;
+
+      //var Rose1 = new Rose("view", ASSETS_URL + 'models/female_walking_lowpoly.js' , ASSETS_URL + 'models/womens_dress.js');
+      //Rose.changeShape('cube');
+      var Rose1;
+      var collection, materials;
+      var garmentIndex = 0;
+
+      var dataURL = "/api/user/collection";
+      if(designer) {
+        dataURL = "/api/user/collection?designer="+designer;
+      }
+
+
+      $.get( dataURL, function( data ) {
+        collection = data;
+        materials = collection.materials;
+        console.log(collection);
+        
+        if (collection.gender == 'male') {
+          bodyFile = ASSETS_URL + 'male/male_model_new.js';
+          Rose1 = new Rose("view", bodyFile,collection.gender, [collection.garments[0], collection.garments[collection.garments.length-1]], collection.shapeType);
+        } else {
+          bodyFile = ASSETS_URL + 'female/female_model_new.js';
+          Rose1 = new Rose("view", bodyFile,collection.gender, [collection.garments[0]], collection.shapeType);
+        }
+        
+
+        makeGeneration1();
+        if (collection.garments[0].shapes) {
+            var shapes = collection.garments[0].shapes;
+            for (var a=0; a<shapes.length; a++) {
+                Rose1.addShape(shapes[a]);
+            }
+        }
+        if(collection.gender == 'male') {
+          var shapes = collection.garments[collection.garments.length-1].shapes;
+            for (var a=0; a<shapes.length; a++) {
+                Rose1.addShape(shapes[a]);
+            }
+        }
+
+        setTimeout(function(){makeInstance(generation1, 0)}, 400);
+      });
+
+      //var shapeInstances = ["user", "vertices","random","heavyTop","heavyBottom"];
+      var shapeInstances = ["user", "vertices","random","heavyTop"];
+
+      //for (i=0; i<instances.length; i++) {
+        //setTimeout(function(){makeInstance(i)}, 500);
+      //}
+      var generation1 = [];
+      var generations =[];
+      var currentGeneration = [];
+      var selectedLooks = [];
+      var variant = {};
+      var Color = net.brehaut.Color;
+      var generationIndex = 0;
+      var totalCount = 18;
+      var count =0;
+      /*
+      generation1.push({
+        color: materials[0].color,
+        materialType: materials[0].materialType,
+        shapePlacement: instances[0]
+      });
+
+*/   
+
+    function makeGeneration1() {
+      $("#roseButton").hide();
+
+      var color1 = Color(materials[0].color);
+      var color2 = Color(materials[1].color);
+      var blend = color1.blend(color2, .5);
+      var triad = color1.triadicScheme();
+      //var gen1 = color1.analogousScheme();
+      var gen1 = color1.schemeFromDegrees([0,15,30,60,90]);
+      var gen2 = color2.schemeFromDegrees([0,15,30,60]);
+
+      
+      var colors = [ gen1[0].toString(), gen1[1].toString(), gen1[2].toString(), gen2[0].toString(), gen2[1].toString(), gen2[2].toString()];
+      //var colors = [gen1[0].toString()];
+      var b=0;
+
+        //for (a=0; a< shapeInstances.length; a++) {
+          //for (i=0; i<colors.length; i++){
+          for(i=0; i<3; i++) {
+            //for (b=0; b<materials.length-1; b++) {
+              
+              console.log(b%2);
+              generation1.push(variant ={
+                colors: [colors[b%colors.length], colors[b%colors.length]],
+                shapeColor: colors[b%colors.length],
+                materialType: materials[b%2].materialType,
+                shapePlacement: shapeInstances[b%4],
+                image: "/assets/textures/blank.png"
+              });
+              b++;
+            //}
+            //for (b=0; b<materials.length-2; b++) {
+              console.log(b%2);
+              generation1.push(variant ={
+                colors: [colors[b%colors.length],colors[b%colors.length]],
+                shapeColor: colors[b%colors.length],
+                materialType: materials[b%2].materialType,
+                shapePlacement: shapeInstances[b%4],
+                image: materials[2].image
+              });
+              b++;
+            //}
+          }
+        //}
+      }
+      
+
+
+    function makeInstance(instances, index) {
+      //console.log(instances);
+        var look ={};
+        look.shapeType = collection.shapeType;
+        look.colors = instances[index].colors;
+        look.shapeColor = instances[index].shapeColor;
+        look.materialType = instances[index].materialType;
+        look.image = instances[index].image;
+        look.shapeImage = instances[index].shapeImage;
+        look.shapePlacement = instances[index].shapePlacement;
+        look.garmentIndex = garmentIndex;
+
+        setTimeout(function(){
+          if (generationIndex == 3) {
+            Rose1.getView().getLook().setShapeScale(1.7);
+          }
+          if (generationIndex == 4) {
+            Rose1.getView().getLook().setShapeScale(2.5);
+          }
+          
+          Rose1.generateShapes(instances[index].shapePlacement);
+
+          if(generationIndex >0) {
+              Rose1.setGarmentMaterial(0, instances[index].colors[0], instances[index].materialType,instances[index].image);
+            if(garmentIndex>0) {
+              Rose1.setGarmentMaterial(1, instances[index].colors[1], instances[index].materialType,instances[index].image);
+            }
+            Rose1.setShapeMaterial(instances[index].shapeColor, instances[index].materialType, instances[index].shapeImage);
+          } else {
+            Rose1.setMaterial(instances[index].materialType);
+            Rose1.setColor(instances[index].colors[0]);
+            Rose1.setImage(instances[index].image);
+          }
+
+          look.shapes = Rose1.getData().shapes;
+          look.garments = Rose1.getData().garments;
+          
+        },50);
+
+        setTimeout(function(){
+          currentGeneration.push(look);
+          makeRender("gen"+generationIndex,currentGeneration.length-1, garmentIndex); 
+          count++;
+
+          if (count<totalCount) {
+           
+            if (index==instances.length-1 || count == Math.ceil(totalCount*2/3)) {
+              garmentIndex++;
+              if (garmentIndex<collection.garments.length-1) {
+                nextGarment(instances, garmentIndex);
+              } 
+            } else {
+             
+              setTimeout(function(){makeInstance(instances, index+1);}, 150);
+           }
+
+          } else {
+            console.log("ROSE finished");
+             $("#roseButton").show();
+              generations.push(currentGeneration);
+              $("#progress-notice").html("ROSE Finished");
+              //$("#viewport").hide();
+            
+          }
+
+        },400);
+        
+      }
+
+      function nextGarment(generation, index) {
+          if (generationIndex == 3) {
+            scaleShapes(collection.garments[index].shapes,1.2);
+          }
+          if (generationIndex == 4) {
+            scaleShapes(collection.garments[index].shapes,1.2);
+          }
+
+        var garmentFile = ASSETS_URL+ collection.gender + '/'+ collection.garments[index].name;
+        Rose1 = new Rose("view", bodyFile , collection.gender, [collection.garments[index], collection.garments[collection.garments.length-1]], collection.shapeType);
+
+        if (collection.garments[index].shapes) {
+            var shapes = collection.garments[index].shapes;
+            for (var a=0; a<shapes.length; a++) {
+                Rose1.addShape(shapes[a]);
+            }
+        }
+        if (collection.garments[collection.garments.length-1].shapes) {
+          var shapes = collection.garments[collection.garments.length-1].shapes;
+            for (var a=0; a<shapes.length; a++) {
+                Rose1.addShape(shapes[a]);
+            }
+        }
+
+        setTimeout(function(){makeInstance(generation,0)}, 400);
+
+      }
+
+      function RoseClick() {
+        if ($("#gen"+generationIndex+" .active").length == 2) {
+          //saveRender($("#selections img").eq(generationIndex*2).attr('src'), generationIndex*2);
+          //saveRender($("#selections img").eq(generationIndex*2+1).attr('src'), generationIndex*2+1);
+          nextGeneration();
+        }
+      }
+
+      function nextGeneration() {
+
+        totalCount = 15;
+        count=0;
+        $("#roseButton").hide();
+        currentGeneration = [];
+        $("#gen"+generationIndex).hide();
+        
+        garmentIndex=0;
+        var id1 = $("#gen"+generationIndex+" .active").first().attr("data-id");
+        var id2 = $("#gen"+generationIndex+" .active").last().attr("data-id");
+
+        var look1 = generations[generationIndex][id1];
+        var look2 = generations[generationIndex][id2];
+        selectedLooks.push(look1);
+        selectedLooks.push(look2);
+
+        var color1 = Color(look1.colors[0]);
+        var color2 = Color(look2.colors[0]);
+        var blend1 = color1.schemeFromDegrees([0,15,30,60]);
+        var blend2 = color2.schemeFromDegrees([0,15,30,60]);
+
+        var gen = [];
+
+        generationIndex++;
+
+    if (generationIndex == 1) {
+        gen.push(variant ={
+          colors: [look2.colors[0],look2.colors[0]],
+          shapeColor: blend2[1].toString(),
+          materialType: look2.materialType,
+          shapePlacement: look1.shapePlacement,
+          image: look2.image,
+          shapeImage: look2.image
+        });
+        gen.push(variant ={
+          colors: [look1.colors[0],look1.colors[0]],
+          shapeColor: look2.colors[0],
+          materialType: look2.materialType,
+          shapePlacement: look2.shapePlacement,
+          image: materials[2].image,
+          shapeImage: materials[2].image
+        });
+
+        gen.push(variant ={
+          colors: [blend1[1].toString(),blend1[1].toString()],
+          shapeColor: blend1[2].toString(),
+          materialType: look1.materialType,
+          shapePlacement: look2.shapePlacement,
+          image: look1.image,
+          shapeImage: look1.image
+        });
+        gen.push(variant ={
+          colors: [blend1[2].toString(),blend1[2].toString()],
+          shapeColor: blend1[1].toString(),
+          materialType: look2.materialType,
+          shapePlacement: "random",
+          image: look1.image,
+          shapeImage: look1.image
+        });
+        if (look2.shapePlacement == "random") {
+          gen[3].shapePlacement = "heavyTop";
+        }
+        if(look1.image == look2.image) {
+          gen[3].image = "/assets/textures/blank.png";
+        }
+
+        gen.push(variant ={
+          colors: [blend2[3].toString(),blend2[3].toString()],
+          shapeColor: blend2[3].toString(),
+          materialType: look2.materialType,
+          shapePlacement: "user",
+          image: look2.image,
+          shapeImage: look2.image
+        });
+    }
+    if (generationIndex >= 2) {
+        gen.push(variant ={
+          colors: [look2.colors[0],look1.colors[0]],
+          shapeColor: look2.colors[0],
+          materialType: look2.materialType,
+          shapePlacement: look1.shapePlacement,
+          image: look2.image,
+          shapeImage: look1.shapeImage
+        });
+        gen.push(variant ={
+          colors: [look1.colors[0],look2.colors[0]],
+          shapeColor: look1.colors[1],
+          materialType: look2.materialType,
+          shapePlacement: look2.shapePlacement,
+          image: materials[2].image,
+          shapeImage: look2.shapeImage
+        });
+
+        gen.push(variant ={
+          colors: [blend1[1].toString(),look1.colors[1]],
+          shapeColor: blend1[2].toString(),
+          materialType: look1.materialType,
+          shapePlacement: look2.shapePlacement,
+          image: look1.image,
+          shapeImage: look1.shapeImage
+        });
+        gen.push(variant ={
+          colors: [look2.colors[1],blend2[2].toString()],
+          shapeColor: blend1[2].toString(),
+          materialType: look2.materialType,
+          shapePlacement: "random",
+          image: look1.image,
+          shapeImage: look2.image
+        });
+        if (look2.shapePlacement == "random") {
+          gen[3].shapePlacement = "heavyTop";
+        }
+        if(look1.image == look2.image) {
+          gen[3].image = "/assets/textures/blank.png";
+        }
+
+        gen.push(variant ={
+          colors: [blend1[2].toString(),blend1[3].toString()],
+          shapeColor: blend2[3].toString(),
+          materialType: look2.materialType,
+          shapePlacement: "user",
+          image: look2.image,
+          shapeImage:look1.shapeImage
+        });
+    }
+        if(generationIndex == 5) {
+          //console.log(selectedLooks);
+          saveLooks();
+          $("#progress-notice").html("Now go to Runway view");
+          $("#viewport").hide();
+          moveRenders();
+
+        } else {
+          //Rose1 = new Rose("view", bodyFile,collection.gender, [collection.garments[0]], collection.shapeType);
+
+          if (collection.gender == 'male') {
+            Rose1 = new Rose("view", bodyFile,collection.gender, [collection.garments[0], collection.garments[collection.garments.length-1]], collection.shapeType);
+          } else {
+            Rose1 = new Rose("view", bodyFile,collection.gender, [collection.garments[0]], collection.shapeType);
+          }
+          if (collection.garments[0].shapes) {
+            var shapes = collection.garments[0].shapes;
+            for (var a=0; a<shapes.length; a++) {
+                Rose1.addShape(shapes[a]);
+            }
+          }
+          if(collection.gender == 'male') {
+            var shapes = collection.garments[collection.garments.length-1].shapes;
+              for (var a=0; a<shapes.length; a++) {
+                  Rose1.addShape(shapes[a]);
+              }
+          }
+
+          setTimeout(function(){makeInstance(gen, 0)}, 200);
+        }
+        
+
+      }
+
+      function saveRender(dataSet, num) {
+        console.log(dataSet.eq(num).attr('src'));
+        $.ajax ({
+              url : "/look?num="+num,
+              type: "POST",
+              data: {data: dataSet.eq(num).attr('src')},
+              success: function (data) {
+                if (num<10) {
+                  num++;
+                  console.log("saved look " + num);
+                  saveRender(dataSet, num);
+                }
+              },
+              error: function() {
+                  console.log("failed to save look " + num);
+              }
+          });
+      }
+
+      function saveLooks(){
+        
+        saveRender($("#selections img"), 0);
+        
+        //saveRender($("#selections img").eq(0).attr('src'), 0, saveRender($("#selections img").eq(1).attr('src'),1));
+
+        var postData = JSON.stringify(selectedLooks);
+        $.ajax ({
+            url : "/looks",
+            type: "POST",
+            data: {data: postData},
+            success: function (data) {
+                //window.location = "";
+                //console.log(data);
+                console.log("now we go to the runway");
+            },
+            error: function() {
+                console.log("failed to save looks");
+            }
+        });
+      }
+
+      function scaleShapes(shapes, value) {
+        for (i=0; i<shapes.length; i++) {
+          var shape = shapes[i];
+          shape.scale.x=shape.scale.x*value;
+          shape.scale.y=shape.scale.y*value;
+          shape.scale.z=shape.scale.z*value;
+        }
+      }
+      /*
+      var slider = document.getElementById('rotation');
+      slider.addEventListener('input', function(e) {  
+        var angle = slider.value;
+        Rose1.setRotation(angle);
+      });
+*/
+      
+
+      $(document).on('click', '.variant' , function() {
+          console.log($(this));
+
+          if ($(this).hasClass('active')) {
+            $(this).removeClass('active');
+          } else {
+            if ($("#gen"+generationIndex+" .active").length < 2) {
+              $(this).addClass('active');
+            }
+          }
+
+      });
+
+      function selectLook() {
+        if ($(this).hasClass('active')) {
+            $(this).removeClass('active');
+            var g = $(this).attr('data-generation');
+            var i = $(this).attr('data-id');
+            $("#selections .var_"+g+"-"+i).remove();
+            $(".leftSidebar").append("<span class='placeholder'></span>");
+          } else {
+            if ($("#gen"+generationIndex+" .active").length < 2) {
+              $("#selections").append($(this).clone());
+              $(this).addClass('active');
+              $(".placeholder").first().remove();
+            }
+          }
+      }
+
+      function moveRenders() {
+        $("#selections img").each(function(){
+          $("#finalCollection").append($(this).clone());
+        });
+        $("#leftColumn").toggle('slide');
+        $("#finalCollection").slideDown();
+        $("#finalButtons").fadeIn('slow');
+      }
+
+
+
+function makeRender(elementId, id, garmentId) {
+  var canvas = document.getElementById("view");
+  if (canvas.getContext) {
+   var ctx = canvas.getContext("experimental-webgl", {preserveDrawingBuffer: true});                
+     var myImage = canvas.toDataURL();  
+     var img = document.createElement("img");
+      img.src = myImage;  
+      img.setAttribute('data-id', id);
+      img.setAttribute('data-generation', generationIndex);
+      img.setAttribute('data-garment', garmentId);
+      img.setAttribute('class', 'variant');
+      img.setAttribute('class', 'var_'+generationIndex+"-"+id);
+      document.getElementById(elementId).appendChild(img);   
+
+      $(img).click(selectLook);
+      //console.log(myImage);
+  }
+                          
+}
+      </script>
+    </body>
+</html>

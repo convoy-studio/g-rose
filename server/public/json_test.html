@@ -1,0 +1,123 @@
+<html lang="en">
+
+
+<head>
+    <meta charset="UTF-8">
+    <title></title>
+    <script src="//ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
+    <script src="js/designer_garments.js"></script>
+
+    <script src="/js/shapes.web.js"></script>
+
+    <style>
+    	.look {
+    		width: 200px;
+    		height: 800px;
+    		border: 1px solid black;
+    		float: left;
+    	}
+    	img {
+    		width: 100px;
+    		display:inline-block;
+    	}
+    	img.preview {
+    		width: 200px;
+    	}
+    	.color {
+    		width: 100px;
+    		height: 30px;
+    		border: 1px solid grey;
+    	}
+
+    </style>
+    </head>
+
+<body>
+
+	<div id="content">
+	</div>
+
+<script>
+var Looks;
+var ASSETS_URL = '/assets/female/'; 
+
+(window.onpopstate = function () {
+  var match,
+      pl     = /\+/g,  // Regex for replacing addition symbol with a space
+      search = /([^&=]+)=?([^&]*)/g,
+      decode = function (s) { return decodeURIComponent(s.replace(pl, " ")); },
+      query  = window.location.search.substring(1);
+
+  urlParams = {};
+  while (match = search.exec(query))
+    urlParams[decode(match[1])] = decode(match[2]);
+})();
+
+var designer = urlParams.designer;
+
+if (!designer) {
+  designer = 'mary';
+}
+ $.getJSON( "/data/"+designer+"_looks.json", function( data ) {
+        Looks = data;
+       console.log(Looks);
+
+       for (var i=0; i<Looks.length; i++) {
+        Looks[i].garments[0].shapes = Looks[i].shapes;
+        Looks[i].garments[0].shapeType = Looks[i].shapeType;
+        console.log(Looks[i].garments[0].shapes);
+       		$look = $('<div></div>');
+       		$look.addClass('look');
+
+       		$garment1 = $('<p>'+Looks[i].garments[0].name+"</p>");
+       		$look.append($garment1);
+       		if( Looks[i].garments.length>1) {
+       			$garment2 = $('<p>'+Looks[i].garments[1].name+"</p>");
+       			$look.append($garment2);
+       		}
+       		$look.append($('<p>garment matcap:</p>'));
+       		$matcap = $('<img src="'+Looks[i].matcap+'"/>');
+       		$look.append($matcap);
+       		if (Looks[i].pattern) {
+       			$look.append($('<p>garment pattern:</p>'));
+       			$matcap = $('<img src="'+Looks[i].pattern+'"/>');
+       			$look.append($matcap);
+       		}
+       		
+       		$look.append($('<p class="color" style="background-color:'+Looks[i].colorsHex[0]+';"></p>'));
+       		$look.append($('<p class="color" style="background-color:'+Looks[i].colorsHex[1]+';"></p>'));
+
+          if (Looks[i].shapePattern) {
+            $look.append($('<p>shape pattern:</p>'));
+            $img = $('<img src="'+Looks[i].shapePattern+'"/>');
+            $look.append($img);
+          }
+
+
+       		$look.append($('<img class="preview" src="data/'+designer+'/look'+i+'.png" />'));
+       		
+
+       	$("#content").append($look);
+       }
+setTimeout(function(){
+  var bodyFile = ASSETS_URL + 'female/female_model_new.js';
+    var garment = Looks[7].garments[0];
+    var shapeView1 = new ShapesView("view",ASSETS_URL+ 'female_model_new.js', garment, garment.morphs);
+        //shapeView1.getView().garment.shapes = Looks[4].shapes;
+});
+       
+    
+        
+   });
+
+</script>
+
+<div id="viewport">
+          <canvas width="550" height="700" id="view"></canvas>
+        </div>
+</body>
+
+
+
+
+</html>

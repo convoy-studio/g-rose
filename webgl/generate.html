@@ -1,0 +1,213 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <title></title>
+        <script src="//ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
+        <script src="generate.web.js"></script>
+
+        <style>
+          #progress-notice {
+            position: absolute;
+            top: 200px;
+            left: 150px;
+            background: rgba(255,255,255,.7);
+            padding: 15px;
+          }
+        </style>
+
+
+    </head>
+    <body>
+      <canvas width="550" height="700" id="view"></canvas>
+      <h2 id="progress-notice">Generating Designs...</h2>
+
+      <br/> Rotation <input type="range" id="rotation" min="-180" max="180">
+<!--
+      <button onclick="makeInstance(0);">Make Variants</button>
+    -->
+      
+      <div id="renders"
+      </div>
+
+      <script>
+
+
+      var isLocalhost = document.location.href.indexOf('localhost') != -1;
+      var ASSETS_URL;
+      var bodyFile;
+
+      //var Rose1 = new Rose("view", ASSETS_URL + 'models/female_walking_lowpoly.js' , ASSETS_URL + 'models/womens_dress.js');
+      //Rose.changeShape('cube');
+      var Rose1;
+      var collection, materials;
+      var garmentIndex = 0;
+
+      $.getJSON( "/data/mary_collection.json", function( data ) {
+        collection = data;
+        materials = collection.materials;
+        console.log(collection);
+        ASSETS_URL = 'http://localhost:3003/assets/'; 
+        if (collection.gender == 'male') {
+          bodyFile = ASSETS_URL + 'male/male_model_new.js';
+        } else {
+          bodyFile = ASSETS_URL + 'female/female_model_new.js';
+        }
+        
+        Rose1 = new Rose("view", bodyFile,collection.gender, collection.garments, collection.shapeType, firstGarment);
+        Rose1.preloadTextures(collection.materials[2].image, collection.materials[3].image);
+        Rose1.preloadMatCaps(collection.materials[0].image, collection.materials[1].image);
+        //Rose1.setGarments(0,1);
+        //preloadShapes();
+        
+        makeVariants();
+
+        
+      });
+
+      function firstGarment() {
+        if (collection.gender =="female") {
+          Rose1.setGarments(0);
+        } else {
+          Rose1.setGarments(0,3);
+        }
+        setTimeout(function(){makeInstance(variants, 0)}, 400);
+      }
+
+      var shapeInstances = ["user", "vertices","random","heavyTop","heavyBottom"];
+
+      function preloadShapes() {
+        for (var i=0; i<collection.garments.length; i++) {
+          if (collection.garments[i].shapes) {
+            var shapes = collection.garments[i].shapes;
+            for (var a=0; a<shapes.length; a++) {
+                Rose1.addShape(i, shapes[a]);
+            }
+          }
+        }
+        
+      }
+
+      //for (i=0; i<instances.length; i++) {
+        //setTimeout(function(){makeInstance(i)}, 500);
+      //}
+      var variants = [];
+      var variant = {};
+      var currentIndex = 0;
+      /*
+      variants.push({
+        color: materials[0].color,
+        materialType: materials[0].materialType,
+        shapeType: instances[0]
+      });
+*/    function makeVariants() {
+          for (a=0; a< shapeInstances.length; a++) {
+          for (b=0; b<2; b++) {
+            variants.push(variant ={
+              color: materials[b].color,
+              materialType: materials[b].materialType,
+              shapeType: shapeInstances[a],
+              image: materials[b].image,
+              pattern: materials[2].image,
+              topColor: materials[b].color,
+            });
+          }
+        }
+      }
+      
+      function makeNext() {
+        makeRender(); 
+        makeInstance(variants, currentIndex);
+      }
+
+      function makeInstance(instances, index) {
+        setTimeout(function(){
+          Rose1.generateShapes(instances[index].shapeType);
+          //Rose1.setMaterial(instances[index].materialType);
+          
+          //(index, hsl, patternurl, maturl, lights ) 
+          Rose1.setGarmentMaterial(0, instances[index].topColor, instances[index].pattern, instances[index].image, 1, false);
+          //(hsl, patternurl, maturl, lights)
+          //Rose1.setColor(instances[index].color);
+          Rose1.setShapeMaterial(instances[index].topColor, null, instances[index].image, false);
+          if(instances[index].image != "") {
+           // Rose1.setImage(instances[index].image);
+          }
+          
+        },50);
+        currentIndex++;
+        //makeRender();
+        setTimeout(function(){
+          makeRender(); 
+          if (index<instances.length-1) {
+            setTimeout(function(){makeInstance(variants, index+1);}, 250);
+          } else {
+            garmentIndex++;
+            if (garmentIndex<collection.garments.length-1) {
+              nextGarment(garmentIndex);
+            } else {
+              console.log("ROSE finished");
+              $("#progress-notice").html("ROSE Finished");
+            }
+            
+          }
+        },300);
+        
+      }
+
+      function nextGarment(index) {
+
+        var garmentFile = ASSETS_URL+ collection.gender + '/'+ collection.garments[index].name;
+        //Rose1 = new Rose("view", bodyFile , collection.gender, [collection.garments[index], collection.garments[collection.garments.length-1]], collection.shapeType);
+        Rose1.setGarments(index, 3);
+/*
+        if (collection.garments[index].shapes) {
+            var shapes = collection.garments[index].shapes;
+            for (var a=0; a<shapes.length; a++) {
+                Rose1.addShape(shapes[a]);
+            }
+        }
+*/
+        setTimeout(function(){makeInstance(variants,0)}, 400);
+        currentIndex = 0;
+
+      }
+      
+      
+
+      var slider = document.getElementById('rotation');
+      slider.addEventListener('input', function(e) {  
+        var angle = slider.value;
+        Rose1.setRotation(angle);
+      });
+
+      function handleMorphSlider(slider, index) {
+        slider.addEventListener('input', function(e) {
+          var value = slider.value/100;
+          //Rose1.getView().getLook().getGarment().morphTargetInfluences[index] = value;
+        });
+      }
+/*
+      handleMorphSlider(document.getElementById('morph1'), 1);
+      handleMorphSlider(document.getElementById('morph2'), 2);
+      handleMorphSlider(document.getElementById('morph3'), 3);
+      handleMorphSlider(document.getElementById('morph4'), 4);
+      handleMorphSlider(document.getElementById('morph5'), 5);
+      handleMorphSlider(document.getElementById('morph6'), 6);
+      */
+
+function makeRender() {
+  var canvas = document.getElementById("view");
+  if (canvas.getContext) {
+   var ctx = canvas.getContext("experimental-webgl", {preserveDrawingBuffer: true});                
+     var myImage = canvas.toDataURL();  
+     var img = document.createElement("img");
+      img.src = myImage;  
+      document.getElementById("renders").appendChild(img);   
+      //console.log(myImage);
+  }
+                          
+}
+      </script>
+    </body>
+</html>

@@ -1,0 +1,376 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <title>Google + Fashion 2014</title>
+		<link rel="icon" href="favicon.ico" />
+		<link rel="image_src" href="/images/rose-thumbnail_tmp.jpg" />
+        <link href='http://fonts.googleapis.com/css?family=EB+Garamond' rel='stylesheet' type='text/css'>
+        <link href='http://fonts.googleapis.com/css?family=Karla:400,700' rel='stylesheet' type='text/css'>
+        <link href='http://fonts.googleapis.com/css?family=Varela+Round' rel='stylesheet' type='text/css'>
+        <link rel="stylesheet" href="stylesheets/main.css" type='text/css'>
+        <link rel="stylesheet" href="stylesheets/global.css" type='text/css'>
+        <link rel="stylesheet" href="stylesheets/jquery.flipster.css">
+
+
+        <script src="//ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
+        <script src="js/designer_garments.js"></script>
+        <script src="js/generate.web.js"></script>
+        <script src="/js/color.js"></script>
+
+        <style>
+          body {
+            background-image: url("/images/scene-background.png");
+            background-position: center -100px;
+            background-size: auto auto;
+            background-repeat: no-repeat;
+            background-attachment: scroll;
+          }
+          #progress-notice {
+            position: absolute;
+            top: 200px;
+            background: rgba(255,255,255,.7);
+            padding: 25px;
+            font-size: 24px;
+            width: 100%;
+            text-align: center;
+          }
+          #finalCollection {
+            width: 1280px;
+            margin: auto auto;
+            margin-top: 20px;
+          }
+          #finalCollection img{
+            -webkit-transform: scale(1, 1);
+            width:225px;
+            margin-right: 22px;
+            display: inline-block;
+            background: transparent;
+          }
+          #finalButtons {
+            width: 1280px;
+            margin: auto auto;
+            margin-top: 20px;
+          }
+          #finalButtons a{
+            width: 255px;
+            padding: 15px;
+            padding-bottom:29px;
+            border: 3px solid gray;
+            background-color: transparent;
+            color: gray;
+            font-size: 22px;
+            letter-spacing: 2px;
+            font-weight: lighter;
+            display:inline-block;
+            margin-right: 15px;
+          }
+          #finalButtons a:hover{
+            color: white;
+            background-color: gray;
+          }
+          .renders img{
+            -webkit-transform: scale(1, 1);
+            width: 450px;
+            display:inline-block;
+            float: left;
+            padding:1px;
+
+          }
+          .renders {
+            float: right;
+            position:absolute;
+            top:0;
+            right:0px;
+            height: 750px;
+          }
+          img.active {
+            //border: 1px solid grey;
+            rgb(228, 241, 241)
+            padding:0px;
+          }
+          .variant:hover{
+            background: white;
+          }
+          #middleSection {
+            position:relative;
+            margin:0 auto;
+            padding-top: 110px;
+            height:750px;
+          }
+          #viewport {
+            margin: auto auto;
+            width: 550px;
+            position:relative;
+            opacity:0;
+            display:none;
+          }
+          #selections {
+            display:none;
+          }
+          #selections img, .variant{
+            -webkit-transform: scale(1, 1);
+            width:100px;
+            //margin:4px;
+            background: white;
+            padding:3px;
+            float: left;
+          }
+          .leftSidebar {
+            width: 232px;
+            padding-top: 85px;
+          }
+          .leftSidebar .note {
+            position:relative;
+            left:-11px;
+          }
+          .placeholder {
+            width: 100px;
+            height:127px;
+            margin:4px;
+            background: white;
+            padding:3px;
+            display: inline-block;
+            float: left;
+            opacity:.6;
+
+            transition: .3s ease-in-out;
+            -moz-transition:  .3s ease-in-out;
+            -webkit-transition:  .3s ease-in-out;
+          }
+          .gen-section{
+            position:relative;
+            float:left;
+          }
+          .gen-marker {
+            -webkit-transform: rotate(270deg);
+            -moz-transform: rotate(270deg);
+            -o-transform: rotate(270deg);
+            writing-mode: lr-tb;
+            text-transform: uppercase;
+            display:inline-block;
+            width: 127px;
+            padding: 6px;
+            padding-bottom: 4px;
+            position: absolute;
+            left: -83px;
+            top: 53px;
+            border: 2px solid white;
+            vertical-align: middle;
+            font-size: 11px;
+            letter-spacing: 2px;
+            font-weight: bold;
+
+            transition: .3s ease-in-out;
+            -moz-transition:  .3s ease-in-out;
+            -webkit-transition:  .3s ease-in-out;
+          }
+          .current .gen-marker{
+            background-color: #8BD6A2;
+          }
+          .current .placeholder {
+            opacity:1;
+          }
+          .coverflow {
+            //position: absolute;
+            //top: 0px;
+            //min-height:700px;
+          }
+          .flipster-coverflow .flip-item {
+            width:550px;
+            opacity:.25;
+            -webkit-transform: scale(.7,.7);
+          }
+          .flipster-coverflow .flip-current {
+            opacity: 1;
+            -webkit-transform: scale(1,1);
+          }
+          .flipto-prev, .flipto-next, .flipto-next:hover, .flipto-prev:hover  {
+            text-transform: uppercase;
+            width:30px;
+            margin: 10px;
+            padding: 10px;
+            position: absolute;
+            top:30%;
+            color:transparent;
+          } 
+          .flipto-prev{
+            left: 35%;
+            background-image:url('/images/arrow-left-black.svg');
+            background-repeat: no-repeat;
+          }
+          .flipto-next {
+            left:61%;
+            background-image:url('/images/arrow-right-black.svg');
+            background-repeat: no-repeat;
+          }
+
+          #keepButton {
+            width: 200px;
+            position:absolute;
+            left: 42%;
+            top:600px;
+            background-color: #8BD6A2;
+          }
+          #roseButton {
+            background-color: #8BD6A2;
+          }
+
+          #loading {
+            position: absolute;
+            top: 35%;
+            left: 40%;
+          }
+
+          #loading h2 {
+            font-size: 20px;
+
+          }
+          .current .remove-button{
+            display:inline-block;
+          }
+
+          #content {
+            background: transparent;
+          }
+          .variant-div {
+            position:relative;
+            float:left;
+            background: white;
+            margin: 4px;
+          }
+
+          .remove-button{
+            width:20px;
+            height:20px;
+            //background-color: red;
+            background: url("/images/xmark.svg");
+            background-repeat: no-repeat;
+            background-size: 100%;
+            position:absolute;
+            top:0px;
+            right:0px;
+            z-index: 5;
+            margin:4px;
+            display:none;
+          }
+          #finalButtons #savingNote {
+            width: 300px;
+            border: none;
+          }
+          #savingNote img{
+             position:relative;
+             top: -15px;
+             vertical-align: top;
+          }
+
+        </style>
+
+
+    </head>
+    <body>
+      <!--HEADER-->
+      <div id="header">
+        <div class="inner">
+          <h2>GOOGLE+ FASHION 2014</h2>
+          <hr>
+          <h2 class="collectionName english"></h2>
+          <div class="logo"><img src="images/common/logo-v.svg" alt="ROSE" width="40" height="116"/></div>
+        </div>
+      </div>
+
+      <div id="content">
+        <div id="leftColumn" class="column">
+          
+          <div class="leftSidebar">
+            <div class="note">
+              <p>Select 2 Looks and then click NEXT</p>
+              <a class="button" onclick="RoseClick();" id="roseButton">Next</a>
+            </div>
+            <div id="selections">
+            </div>
+            <div id="gen0-thumb" class="gen-section current">
+              <span class="gen-marker">Gen One</span>
+              <span class="placeholder"></span>
+              <span class="placeholder"></span>
+            </div>
+            <div id="gen1-thumb" class="gen-section">
+              <span class="gen-marker">Gen Two</span>
+              <span class="placeholder"></span>
+              <span class="placeholder"></span>
+            </div>
+            <div id="gen2-thumb" class="gen-section">
+              <span class="gen-marker">Gen Three</span>
+              <span class="placeholder"></span>
+              <span class="placeholder"></span>
+            </div>
+            <div id="gen3-thumb" class="gen-section">
+              <span class="gen-marker">Gen Four</span>
+              <span class="placeholder"></span>
+              <span class="placeholder"></span>
+            </div>
+            <div id="gen4-thumb" class="gen-section">
+              <span class="gen-marker">Gen Five</span>
+              <span class="placeholder"></span>
+              <span class="placeholder"></span>
+            </div>
+
+          </div>
+        </div>
+  <!--
+        <br/> Rotation <input type="range" id="rotation" min="-180" max="180">
+      -->
+        <div id="middleSection">
+          <div id="finalCollection" style="display:none;"></div>
+          <div id="finalButtons" style="display:none;">
+            <a href="" class="button">Start Again</a>
+            <a href="/runway" class="button" id="runwayButton" style="display:none;">See Runway</a>
+            <a id="savingNote" class="button"><img src="/images/Loading.gif" width=40/> Saving Looks</a>
+          </div>
+
+          <div id="loading">
+            <h2>Generating Designs...</h2>
+            <img src="images/Loading.gif" width=50/>
+          </div>
+
+          <div id="flip0" class="coverflow">
+            <div class="renders" id="gen0" style="display:none;"></div>
+          </div>
+          <div id="flip1" class="coverflow">
+            <div class="renders" id="gen1" style="display:none;"></div>
+          </div>
+          <div id="flip2" class="coverflow">
+            <div class="renders" id="gen2" style="display:none;"></div>
+          </div>
+          <div id="flip3" class="coverflow">
+            <div class="renders" id="gen3" style="display:none;"></div>
+          </div>
+          <div id="flip4" class="coverflow">
+            <div class="renders" id="gen4" style="display:none;"></div>
+          </div>
+
+          <a class="button" id="keepButton">Keep</a>
+        </div>
+
+        <div id="viewport">
+          <canvas width="550" height="700" id="view"></canvas>
+        </div>
+
+      </div>
+
+      <script src="js/jquery.flipster.min.js"></script>
+      <script src="js/Rose_generate.js"> </script>
+
+	  <!--FOOTER-->
+	  <div id="footer">
+		  <div class="inner_footer">
+			  <ul>
+				  <li class="link"><a href="http://google.com">GOOGLE</a></li><!--
+					--><li>/</li><!--
+					--><li class="link"><a class="fancy_bt fancybox.ajax" href="/logout">LOGOUT</a></li>
+			  </ul>
+		  </div>
+	  </div>
+
+    </body>
+</html>

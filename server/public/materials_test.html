@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <title></title>
+        <script src="js/materialView.web.js"></script>
+    </head>
+    <body>
+      <canvas width="256" height="256" id="matView1"></canvas>
+      <canvas width="256" height="256" id="matView2"></canvas>
+      <canvas width="256" height="256" id="matView3"></canvas>
+      <script>
+      var matView1 = new MaterialPreview("matView1");
+      matView1.setMaterial("flat");
+      matView1.setColor("#FF0000");
+      matView1.setBGColor("#000000");
+
+      var matView2 = new MaterialPreview("matView2");
+      matView2.setMaterial("matte");
+      matView2.setColor("#44FF77");
+      matView2.setImage("assets/textures/pattern_4.jpg");
+      matView2.setBGColor("#333333");
+
+      var matView3 = new MaterialPreview("matView3");
+      matView3.setMaterial("glossy");
+      matView3.setColor("#44DDFF");
+      matView3.setBGColor("#999999");
+      </script>
+    </body>
+</html>

@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <title></title>
+        <script src="walking.web.js"></script>
+    </head>
+    <body>
+      <canvas width="500" height="700" id="view"></canvas>
+      <br/> Num looks <input type="range" id="numLooks" min="1" max="10" value="1">
+      <script>
+      var view = document.getElementById('view');
+      view.width = window.innerWidth - 20;
+      var isLocalhost = document.location.href.indexOf('localhost') != -1;
+      var ASSETS_URL =  isLocalhost ? 'http://localhost:3003/assets/' : '/assets/';
+      var walkingView = new WalkingView("view", ASSETS_URL + 'models/female_walking_lowpoly.js' , ASSETS_URL + 'models/womens_dress.js');
+      walkingView.setBGColor('#000000');
+
+      var slider = document.getElementById('numLooks');
+      slider.addEventListener('input', function(e) {
+        walkingView.setNumLooks(slider.value);
+      });
+      </script>
+    </body>
+</html>

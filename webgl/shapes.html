@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <title></title>
+        <script src="shapes.web.js"></script>
+    </head>
+    <body>
+      <canvas width="500" height="700" id="view"></canvas>
+      <br/> Morph 1 <input type="range" id="morph1" min="0" max="100" value="0">
+      <br/> Morph 2 <input type="range" id="morph2" min="0" max="100" value="0">
+      <br/> Morph 3 <input type="range" id="morph3" min="0" max="100" value="0">
+      <br/> Morph 4 <input type="range" id="morph4" min="0" max="100" value="0">
+      <br/> Morph 5 <input type="range" id="morph5" min="0" max="100" value="0">
+      <br/> Morph 6 <input type="range" id="morph6" min="0" max="100" value="0">
+      <br/> Rotation <input type="range" id="rotation" min="-180" max="180">
+
+      <button onclick="makeRender();">Make Render</button>
+      
+      <div id="renders"
+      </div>
+
+      <script>
+      var isLocalhost = document.location.href.indexOf('localhost') != -1;
+      var ASSETS_URL =  isLocalhost ? 'http://localhost:3003/assets/' : '/assets/';
+      var morphs = [1,.5,.5];
+      var ShapeNames = [ 'Cube_01', 'Cup_01', 'Cylinder_01', 'Disc_01', 'Dome_01', 'Dots_02', 'Icosa_01', 'Oct_01', 'Plane_01', 'Polygon_01', 'Torus_02', 'Tubes_02', 'leaf', 'fur' ];
+
+
+      $.getJSON( "/data/mary_collection.json", function( data ) {
+        collection = data;
+        materials = collection.materials;
+        console.log(collection);
+        ASSETS_URL = 'http://localhost:3003/assets/'; 
+        if (collection.gender == 'male') {
+          bodyFile = ASSETS_URL + 'male/male_model_new.js';
+        } else {
+          bodyFile = ASSETS_URL + 'female/female_model_new.js';
+        }
+        
+        var ShapesView = new ShapesView("view", ASSETS_URL + 'female/female_model_new.js' , collection.garments[0]);
+
+        
+      });
+
+      
+      //ShapesView.changeShape('leaf');
+
+      var slider = document.getElementById('rotation');
+      slider.addEventListener('input', function(e) {
+        var angle = slider.value;
+        ShapesView.setRotation(angle);
+      });
+
+      function handleMorphSlider(slider, index) {
+        slider.addEventListener('input', function(e) {
+          var value = slider.value/100;
+          ShapesView.getView().getLook().getGarment().morphTargetInfluences[index] = value;
+        });
+      }
+
+      handleMorphSlider(document.getElementById('morph1'), 1);
+      handleMorphSlider(document.getElementById('morph2'), 2);
+      handleMorphSlider(document.getElementById('morph3'), 3);
+      handleMorphSlider(document.getElementById('morph4'), 4);
+      handleMorphSlider(document.getElementById('morph5'), 5);
+      handleMorphSlider(document.getElementById('morph6'), 6);
+
+function makeRender() {
+  var canvas = document.getElementById("view");
+  if (canvas.getContext) {
+   var ctx = canvas.getContext("experimental-webgl", {preserveDrawingBuffer: true});                
+     var myImage = canvas.toDataURL();  
+     var img = document.createElement("img");
+      img.src = myImage;  
+      document.getElementById("renders").appendChild(img);   
+      console.log(myImage);
+  }
+                          
+}
+      </script>
+    </body>
+</html>
